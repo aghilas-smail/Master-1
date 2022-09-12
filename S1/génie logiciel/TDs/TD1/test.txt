@@ -1,0 +1,17 @@
+TD 1 - genie logiciel.
+
+*exo 1 :  Un modéle de cycle de vie aide la gestion du développement d'un logiciel en décomposant le processus de développement selon une série d'activités couplées en elles, partant du besoin initial pour aboutir au produit opérationnel.
+* Classement des tache selon le modéle en cascade:
+
+ 1- spécification des exigences.
+ 2- synthèse des exigences.
+ 3- etude du marché.
+ 4- organisation de projet.
+ 5- conception de bas niveau.
+ 6- conception de haut niveau.
+ 7- implémentation.
+ 8 - estemation des couts.
+ 9- test d'acceptation.
+ 10- test système.
+
+* Les phase du cycle de vie d'un logiciel en V :
