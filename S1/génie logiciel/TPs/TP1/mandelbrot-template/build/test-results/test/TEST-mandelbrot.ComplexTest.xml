@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mandelbrot.ComplexTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2022-09-18T21:15:33" hostname="LAPTOP-6NUJLARE" time="0.066">
+  <properties/>
+  <testcase name="testDivideByZero()" classname="mandelbrot.ComplexTest" time="0.043"/>
+  <testcase name="testAdd()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testOne()" classname="mandelbrot.ComplexTest" time="0.003"/>
+  <testcase name="testBasicToString()" classname="mandelbrot.ComplexTest" time="0.005"/>
+  <testcase name="testZero()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testReciprocal()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testGetReal()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testReciprocalOfZero()" classname="mandelbrot.ComplexTest" time="0.001"/>
+  <testcase name="testConjugate()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testI()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testGetImaginary()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testRotation()" classname="mandelbrot.ComplexTest" time="0.001"/>
+  <testcase name="testDivide()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testEquals()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testNegate()" classname="mandelbrot.ComplexTest" time="0.0"/>
+  <testcase name="testToStringFormat()" classname="mandelbrot.ComplexTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
