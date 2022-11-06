@@ -12,20 +12,49 @@ public class Mandelbrot {
     final static int nombre_thread = 4;
 
     // Focntion qui va lancé les 4 thread
-    public static void main(String[] args)  {
+
+    private final int maZone;
+    public Mandelbrot(int zone) {
+        this.maZone = zone;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
         final long début = System.nanoTime() ;
 
-        for (int i = 0; i < taille; i++) {
+
+        Thread[] MesThread = new Thread[nombre_thread];
+        for (int i =0;i<nombre_thread; i ++) {
+            final int maZone = i;
+            MesThread[i] = new Thread(new Runnable() {
+                public void run() {
+                    final long debut = System.nanoTime();
+                    for (int ligne = maZone * taille/4; ligne< (maZone+1) *taille/4; ligne++){
+                        for (int k = 1; k<taille;k++) {
+                            colorierPixel(ligne,k);
+                        }
+                    }
+                    final long fin = System.nanoTime();
+                    final long durée = (fin - debut) / 1_000_000;
+                    System.out.println("la durée de chaque thread est " +Thread.currentThread().getName() + " = " +(long) durée / 1000 + "s.");
+                }
+            });
+            MesThread[i].start();
+
+        /*for (int i = 0; i < taille; i++) {
             for (int j = 0; j < taille; j++) {
                 colorierPixel(i,j) ;
             }
             // image.show();         // Pour visualiser l'évolution de l'image
-        }
+        */}
 
-        final long fin = System.nanoTime() ;
-        final long durée = (fin - début) / 1_000_000 ;
-        System.out.println("Durée = " + (double) durée / 1000 + " s.") ;
-       // image.show() ;
+        for (int k = 0; k < nombre_thread; k++){
+        MesThread[k].join();
+    }
+
+    final long fin = System.nanoTime();
+    final long durée = (fin - début) / 1_000_000 ;
+		System.out.println("Durée Totale = " + (long) durée /1000 + " s.");
+        image.show() ;
     }    
 
     // La fonction colorierPixel(i,j) colorie le pixel (i,j) de l'image en gris ou blanc
