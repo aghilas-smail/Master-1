@@ -6,9 +6,12 @@ public class Mandelbrot {
     final static int taille = 500 ;   // nombre de pixels par ligne et par colonne
     final static Picture image = new Picture(taille, taille) ;
     // Il y a donc taille*taille pixels blancs ou gris à déterminer
-    final static int max = 40_000 ; 
+    final static int max = 100_000 ;
     // C'est le nombre maximum d'itérations pour déterminer la couleur d'un pixel
-    
+
+    final static int nombre_thread = 4;
+
+    // Focntion qui va lancé les 4 thread
     public static void main(String[] args)  {
         final long début = System.nanoTime() ;
 
@@ -22,7 +25,7 @@ public class Mandelbrot {
         final long fin = System.nanoTime() ;
         final long durée = (fin - début) / 1_000_000 ;
         System.out.println("Durée = " + (double) durée / 1000 + " s.") ;
-        image.show() ;
+       // image.show() ;
     }    
 
     // La fonction colorierPixel(i,j) colorie le pixel (i,j) de l'image en gris ou blanc
