@@ -1,2 +1,2 @@
-Main-Class: Mandelbrot
+Main-Class: Mandelbrot_test
 
