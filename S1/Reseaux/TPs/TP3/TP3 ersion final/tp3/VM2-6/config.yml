@@ -1,0 +1,76 @@
+# Configuration eth1+eth2+radvd / Ansible playbook
+# RAPPEL: eth0 est à vagrant, ne pas y toucher
+
+- hosts: localhost
+  remote_user: root
+  tasks:
+
+# Configurations Réseaux
+  - name: Configuration de VM2-6/eth1
+    community.general.nmcli:
+      type: ethernet
+      conn_name: eth1 via ansible
+      ifname: eth1
+      state: present
+      ip6: fc00:1234:1::26/64
+
+  - name: Configuration de la route vers LAN3-6 via VM1-6
+    community.general.nmcli:
+      type: ethernet
+      conn_name: eth1 via ansible
+      ifname: eth1
+      routes6: fc00:1234:3::/64 fc00:1234:1::16
+      state: present
+
+  - name: Activation explicite de la configuration eth1
+    shell: nmcli con up "eth1 via ansible"
+
+  - name: Configuration de VM2-6/eth2
+    community.general.nmcli:
+      type: ethernet
+      conn_name: eth2 via ansible
+      ifname: eth2
+      state: present
+      ip6: fc00:1234:2::26/64
+
+  - name: Configuration de la route vers LAN4-6 via VM3-6
+    community.general.nmcli:
+      type: ethernet
+      conn_name: eth2 via ansible
+      ifname: eth2
+      routes6: fc00:1234:4::/64 fc00:1234:2::36
+      state: present
+
+  - name: Activation explicite de  la configuration eth1
+    shell: nmcli con up "eth2 via ansible"
+
+# Activer le routage
+  - name: Activation du routage IPv6
+    sysctl:
+      name: net.ipv6.conf.all.forwarding
+      value: '1'
+      sysctl_set: yes
+
+# Service radvd
+  - name: fichier de configuration radvd.conf
+    copy:
+      src: /vagrant/radvd.conf
+      dest: /etc/radvd.conf
+      owner: root
+      group: root
+      mode: '0644'
+
+  - name: Installer radvd
+    package:
+      name: radvd
+      state: present
+
+  - name: Démarrer le service radvd
+    service:
+      name: radvd
+      state: started
+
+# A faire en dernier ...
+  - name: Suppression de la passerelle par défaut
+    shell: ip route del default
+    ignore_errors: true

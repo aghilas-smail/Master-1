@@ -1,0 +1,201 @@
+1 - construction 
+
+ping
+vm1 - vm3
+m1reseaux@VM1:~$ ping 172.16.2.163
+PING 172.16.2.163 (172.16.2.163) 56(84) bytes of data.
+64 bytes from 172.16.2.163: icmp_seq=1 ttl=63 time=1.23 ms
+64 bytes from 172.16.2.163: icmp_seq=2 ttl=63 time=1.17 ms
+64 bytes from 172.16.2.163: icmp_seq=3 ttl=63 time=1.12 ms
+^C
+--- 172.16.2.163 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 1.117/1.174/1.233/0.047 ms
+
+vm3 - vm1
+m1reseaux@VM3:~$ ping 172.16.2.131
+PING 172.16.2.131 (172.16.2.131) 56(84) bytes of data.
+64 bytes from 172.16.2.131: icmp_seq=1 ttl=63 time=1.15 ms
+64 bytes from 172.16.2.131: icmp_seq=2 ttl=63 time=1.17 ms
+64 bytes from 172.16.2.131: icmp_seq=3 ttl=63 time=1.11 ms
+^C
+--- 172.16.2.131 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2009ms
+rtt min/avg/max/mdev = 1.110/1.141/1.168/0.023 ms
+
+routes
+
+m1reseaux@VM1-6:~$ ip -6 route
+::1 dev lo proto kernel metric 256 pref medium
+fc00:1234:1::/64 dev eth1 proto kernel metric 100 pref medium
+fc00:1234:2::/64 via fc00:1234:1::26 dev eth1 proto static metric 100 pref medium
+fc00:1234:3::/64 dev eth2 proto kernel metric 101 pref medium
+fc00:1234:4::/64 via fc00:1234:1::26 dev eth1 proto static metric 100 pref medium
+fe80::/64 dev eth1 proto kernel metric 100 pref medium
+fe80::/64 dev eth2 proto kernel metric 101 pref medium
+fe80::/64 dev eth0 proto kernel metric 256 pref medium
+
+m1reseaux@VM2-6:~$ ip -6 route
+::1 dev lo proto kernel metric 256 pref medium
+fc00:1234:1::/64 dev eth1 proto kernel metric 100 pref medium
+fc00:1234:2::/64 dev eth2 proto kernel metric 101 pref medium
+fc00:1234:3::/64 via fc00:1234:1::16 dev eth1 proto static metric 100 pref medium
+fc00:1234:4::/64 via fc00:1234:2::36 dev eth2 proto static metric 101 pref medium
+fe80::/64 dev eth1 proto kernel metric 100 pref medium
+fe80::/64 dev eth2 proto kernel metric 101 pref medium
+fe80::/64 dev eth0 proto kernel metric 256 pref medium
+
+m1reseaux@VM3-6:~$ ip -6 route
+::1 dev lo proto kernel metric 256 pref medium
+fc00:1234:1::/64 via fc00:1234:2::26 dev eth1 proto static metric 100 pref medium
+fc00:1234:2::/64 dev eth1 proto kernel metric 100 pref medium
+fc00:1234:3::/64 via fc00:1234:2::26 dev eth1 proto static metric 100 pref medium
+fc00:1234:4::/64 dev eth2 proto kernel metric 101 pref medium
+fe80::/64 dev eth1 proto kernel metric 100 pref medium
+fe80::/64 dev eth2 proto kernel metric 101 pref medium
+fe80::/64 dev eth0 proto kernel metric 256 pref medium
+
+m1reseaux@VM1:~$ ip -6 route
+::1 dev lo proto kernel metric 256 pref medium
+fc00:1234:1::/64 via fc00:1234:3::16 dev eth2 proto static metric 101 pref medium
+fc00:1234:2::/64 via fc00:1234:3::16 dev eth2 proto static metric 101 pref medium
+fc00:1234:3::/64 dev eth2 proto kernel metric 101 pref medium
+fc00:1234:4::/64 via fc00:1234:3::16 dev eth2 proto static metric 101 pref medium
+fe80::/64 dev eth1 proto kernel metric 100 pref medium
+fe80::/64 dev eth2 proto kernel metric 101 pref medium
+fe80::/64 dev eth0 proto kernel metric 256 pref medium
+
+m1reseaux@VM3:~$ ip -6 route
+::1 dev lo proto kernel metric 256 pref medium
+fc00:1234:1::/64 via fc00:1234:4::36 dev eth2 proto static metric 101 pref medium
+fc00:1234:2::/64 via fc00:1234:4::36 dev eth2 proto static metric 101 pref medium
+fc00:1234:3::/64 via fc00:1234:4::36 dev eth2 proto static metric 101 pref medium
+fc00:1234:4::/64 dev eth2 proto kernel metric 101 pref medium
+fe80::/64 dev eth1 proto kernel metric 100 pref medium
+fe80::/64 dev eth2 proto kernel metric 101 pref medium
+fe80::/64 dev eth0 proto kernel metric 256 pref medium
+
+
+ping6
+
+vm1-6 - VM3
+m1reseaux@VM1-6:~$ ping6 fc00:1234:4::3
+PING fc00:1234:4::3(fc00:1234:4::3) 56 data bytes
+64 bytes from fc00:1234:4::3: icmp_seq=1 ttl=62 time=1.98 ms
+64 bytes from fc00:1234:4::3: icmp_seq=2 ttl=62 time=2.66 ms
+64 bytes from fc00:1234:4::3: icmp_seq=3 ttl=62 time=1.92 ms
+^C
+--- fc00:1234:4::3 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 1.921/2.186/2.655/0.332 ms
+
+vm3-6 - vm1
+m1reseaux@VM3-6:~$ ping6 fc00:1234:3::1
+PING fc00:1234:3::1(fc00:1234:3::1) 56 data bytes
+64 bytes from fc00:1234:3::1: icmp_seq=1 ttl=62 time=1.85 ms
+64 bytes from fc00:1234:3::1: icmp_seq=2 ttl=62 time=1.80 ms
+64 bytes from fc00:1234:3::1: icmp_seq=3 ttl=62 time=1.71 ms
+^C
+--- fc00:1234:3::1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2006ms
+rtt min/avg/max/mdev = 1.712/1.788/1.853/0.058 ms
+
+vm1-vm3
+m1reseaux@VM1:~$ ping6 fc00:1234:4::36
+PING fc00:1234:4::36(fc00:1234:4::36) 56 data bytes
+64 bytes from fc00:1234:4::36: icmp_seq=1 ttl=62 time=1.99 ms
+64 bytes from fc00:1234:4::36: icmp_seq=2 ttl=62 time=1.70 ms
+64 bytes from fc00:1234:4::36: icmp_seq=3 ttl=62 time=1.72 ms
+^C
+--- fc00:1234:4::36 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 1.704/1.804/1.988/0.130 ms
+
+
+2 - utilisation
+
+terminer avec ctrl + d
+
+m1reseaux@VM1-6:/mnt/partage$ java EchoClient fc00:1234:2::36 1234
+Essai de connexion ?? fc00:1234:2::36 sur le port 1234
+
+le n? de la socket est : Socket[addr=/fc00:1234:2:0:0:0:0:36,port=1234,localport=38802]
+re?u: Bonjour /fc00:1234:1:0:0:0:0:16! (vous utilisez le port 38802)
+Connexion termin?e !!
+H?te distant inform?...
+Connexion termin?e par l'h?te distant
+Fin de la session.
+
+terminer avec ctrl + c
+
+m1reseaux@VM1-6:/mnt/partage$ java EchoClient fc00:1234:2::36 1234
+Essai de connexion ?? fc00:1234:2::36 sur le port 1234
+
+le n? de la socket est : Socket[addr=/fc00:1234:2:0:0:0:0:36,port=1234,localport=44950]
+re?u: Bonjour /fc00:1234:1:0:0:0:0:16! (vous utilisez le port 44950)
+^Cm1reseaux@VM1-6:/mnt/partage$ 
+
+
+4 - le port 1234
+changer l'argument 
+
+5 - les ports de VM3-6
+
+m1reseaux@VM3-6:~$ ss -plat6
+State    Recv-Q    Send-Q       Local Address:Port       Peer Address:Port   Process                                                                      
+LISTEN   0         50                       *:1234                  *:*       users:(("java",pid=2143,fd=6))                                              
+LISTEN   0         128                   [::]:ssh                [::]:*                                                                                   
+LISTEN   0         10                       *:echo                  *:*      
+
+6- 
+m1reseaux@VM3-6:/mnt/partage$ ./echoserveur 1234
+Ecoute sur le port 1234
+le n�� de la socket est : 3
+Option(s) OK!
+bind: Address already in use
+m1reseaux@VM3-6:/mnt/partage$ ./echoserveur 1235
+Ecoute sur le port 1235
+le n�� de la socket est : 3
+Option(s) OK!
+bind!
+listen!
+
+m1reseaux@VM3-6:/mnt/partage$ java EchoServer 1234
+Lancement du serveur sur le port 1234
+[/fc00:1234:1:0:0:0:0:16:38802]: Termin?...
+[/fc00:1234:1:0:0:0:0:16:44950]: Termin?...
+
+
+autres client 
+
+1 - non 
+m1reseaux@VM1:~$ telnet fc00:1234:2::36 1234
+Trying fc00:1234:2::36...
+Connected to fc00:1234:2::36.
+Escape character is '^]'.
+Bonjour /fc00:1234:3:0:0:0:0:1! (vous utilisez le port 43318)
+
+
+2-
+
+m1reseaux@VM1:/mnt/partage$ python3 echoclient.py fc00:1234:2::36 1234
+le n�� de la socket est :  3
+Essai de connexion �� fc00:1234:2::36 ( fc00:1234:2::36  ) sur le port  1234
+Connect�� �� ('fc00:1234:2::36', 1234, 0, 0)
+Re��u: Bonjour /fc00:1234:3:0:0:0:0:1! (vous utilisez le port 42168)
+
+m1reseaux@VM3-6:/mnt/partage$ java EchoServer 1234
+Lancement du serveur sur le port 1234
+[/fc00:1234:3:0:0:0:0:1:43318]: 1:
+[/fc00:1234:3:0:0:0:0:1:43318]: Termin?...
+[/fc00:1234:3:0:0:0:0:1:42168]: Termin?...
+
+serveur applicatif
+
+m1reseaux@VM2:/mnt/partage$ python3 echoclient.py fc00:1234:2::36 1234
+le n�� de la socket est :  3
+Essai de connexion �� fc00:1234:2::36 ( fc00:1234:2::36  ) sur le port  1234
+Erreur Connexion : [Errno 101] Network is unreachable
+
+
+
