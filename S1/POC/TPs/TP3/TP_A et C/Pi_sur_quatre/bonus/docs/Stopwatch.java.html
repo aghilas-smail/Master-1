@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en"><head>
+
+<link rel="shortcut icon" href="https://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="Stopwatch.java_fichiers/java.css" type="text/css">
+
+<title>Stopwatch.java</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="Stopwatch code in Java">
+<meta name="TITLE" content="Stopwatch code in Java">
+<meta name="KEYWORDS" content="Stopwatch,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>Stopwatch.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="https://introcs.cs.princeton.edu/java/32class/Stopwatch.java">Stopwatch.java</a>
+from <a href="https://introcs.cs.princeton.edu/java/stdlib">§ Standard Libraries</a>.
+&nbsp; Here is the <a href="https://introcs.cs.princeton.edu/java/stdlib/javadoc/Stopwatch.html">Javadoc</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac Stopwatch.java</span>
+<span class="comment"> *  Execution:    java Stopwatch n</span>
+<span class="comment"> *  Dependencies: none</span>
+<span class="comment"> *</span>
+<span class="comment"> *  A utility class to measure the running time (wall clock) of a program.</span>
+<span class="comment"> *</span>
+<span class="comment"> *  % java8 Stopwatch 100000000</span>
+<span class="comment"> *  6.666667e+11  0.5820 seconds</span>
+<span class="comment"> *  6.666667e+11  8.4530 seconds</span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="comment">/**</span>
+<span class="comment"> *  The {</span><span class="type">@code</span><span class="comment"> Stopwatch} data type is for measuring</span>
+<span class="comment"> *  the time that elapses between the start and end of a</span>
+<span class="comment"> *  programming task (wall-clock time).</span>
+<span class="comment"> *</span>
+<span class="comment"> *  See {</span><span class="type">@link</span><span class="comment"> StopwatchCPU} for a version that measures CPU time.</span>
+<span class="comment"> *</span>
+<span class="comment"> *  </span><span class="type">@author</span><span class="comment"> Robert Sedgewick</span>
+<span class="comment"> *  </span><span class="type">@author</span><span class="comment"> Kevin Wayne</span>
+<span class="comment"> */</span>
+
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">Stopwatch</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span>
+
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">final</span><span class="normal"> </span><span class="type">long</span><span class="normal"> start</span><span class="symbol">;</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Initializes a new stopwatch.</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="function">Stopwatch</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        start </span><span class="symbol">=</span><span class="normal"> System</span><span class="symbol">.</span><span class="function">currentTimeMillis</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span>
+
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns the elapsed CPU time (in seconds) since the stopwatch was created.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> elapsed CPU time (in seconds) since the stopwatch was created</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">elapsedTime</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">long</span><span class="normal"> now </span><span class="symbol">=</span><span class="normal"> System</span><span class="symbol">.</span><span class="function">currentTimeMillis</span><span class="symbol">();</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">now </span><span class="symbol">-</span><span class="normal"> start</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">1000.0</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span>
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Unit tests the {</span><span class="type">@code</span><span class="comment"> Stopwatch} data type.</span>
+<span class="comment">     * Takes a command-line argument {</span><span class="type">@code</span><span class="comment"> n} and computes the </span>
+<span class="comment">     * sum of the square roots of the first {</span><span class="type">@code</span><span class="comment"> n} positive integers,</span>
+<span class="comment">     * first using {</span><span class="type">@code</span><span class="comment"> Math.sqrt()}, then using {</span><span class="type">@code</span><span class="comment"> Math.pow()}.</span>
+<span class="comment">     * It prints to standard output the sum and the amount of time to</span>
+<span class="comment">     * compute the sum. Note that the discrete sum can be approximated by</span>
+<span class="comment">     * an integral - the sum should be approximately 2/3 * (n^(3/2) - 1).</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@param</span><span class="comment"> args the command-line arguments</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> n </span><span class="symbol">=</span><span class="normal"> Integer</span><span class="symbol">.</span><span class="function">parseInt</span><span class="symbol">(</span><span class="normal">args</span><span class="symbol">[</span><span class="number">0</span><span class="symbol">]);</span>
+
+<span class="normal">        </span><span class="comment">// sum of square roots of integers from 1 to n using Math.sqrt(x).</span>
+<span class="normal">        </span><span class="usertype">Stopwatch</span><span class="normal"> timer1 </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">Stopwatch</span><span class="symbol">();</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> sum1 </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;=</span><span class="normal"> n</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            sum1 </span><span class="symbol">+=</span><span class="normal"> Math</span><span class="symbol">.</span><span class="function">sqrt</span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> time1 </span><span class="symbol">=</span><span class="normal"> timer1</span><span class="symbol">.</span><span class="function">elapsedTime</span><span class="symbol">();</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">printf</span><span class="symbol">(</span><span class="string">"%e (%.2f seconds)</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> sum1</span><span class="symbol">,</span><span class="normal"> time1</span><span class="symbol">);</span>
+
+<span class="normal">        </span><span class="comment">// sum of square roots of integers from 1 to n using Math.pow(x, 0.5).</span>
+<span class="normal">        </span><span class="usertype">Stopwatch</span><span class="normal"> timer2 </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">Stopwatch</span><span class="symbol">();</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> sum2 </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;=</span><span class="normal"> n</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            sum2 </span><span class="symbol">+=</span><span class="normal"> Math</span><span class="symbol">.</span><span class="function">pow</span><span class="symbol">(</span><span class="normal">i</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.5</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> time2 </span><span class="symbol">=</span><span class="normal"> timer2</span><span class="symbol">.</span><span class="function">elapsedTime</span><span class="symbol">();</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">printf</span><span class="symbol">(</span><span class="string">"%e (%.2f seconds)</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> sum2</span><span class="symbol">,</span><span class="normal"> time2</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span><span class="normal"> </span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="Stopwatch.java_fichiers/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2017, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Fri Oct 20 14:12:12 EDT 2017.
+</small></address>
+
+
+</body></html>

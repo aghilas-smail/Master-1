@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/TP_A et C/Pi_sur_quatre/Pi_sur_quatre.iml" filepath="$PROJECT_DIR$/TP_A et C/Pi_sur_quatre/Pi_sur_quatre.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TP3.iml" filepath="$PROJECT_DIR$/.idea/TP3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP_A et C/TP_A et C.iml" filepath="$PROJECT_DIR$/TP_A et C/TP_A et C.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP_A et C/Pi_sur_quatre/bonus/bonus.iml" filepath="$PROJECT_DIR$/TP_A et C/Pi_sur_quatre/bonus/bonus.iml" />
+    </modules>
+  </component>
+</project>
