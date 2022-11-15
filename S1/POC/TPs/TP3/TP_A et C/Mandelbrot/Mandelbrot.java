@@ -23,6 +23,8 @@ public class Mandelbrot {
         public void run() {
             for (int j = 0; j<taille; j++) {
                 colorierPixel(nbLigne, j);
+
+
             }
         }
     }
