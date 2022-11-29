@@ -22,7 +22,19 @@
  **/
 void ext_out(int tunfd , char *port) {
   
-  int serS, n,len,on; // Description 
+  int serS, n,len,on; // Description de socket
+  struct addrinfo * resolution; //résolution
+  struct addrinfo indice = {AI_PASSIVE,PF_INET6, SOCK_STREAM,0,
+                                0,NULL,NULL,NULL}
+
+  struct sockaddr_in client ; // adresse de socket de client.
+  int erreur = getaddrinfo(NULL,port,&indice,&resolution); // code d'erreur.
+
+  // Le stderr est le flux standare de sortie de l'erreur.
+  if(erreur<0) {
+    fprint(stderr)
+  }
+
 
   do {
     // open server
