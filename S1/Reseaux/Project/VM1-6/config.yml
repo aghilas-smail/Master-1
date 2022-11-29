@@ -1,0 +1,30 @@
+# Configuration eth1 / Ansible playbook
+# RAPPEL: eth0 est à vagrant, ne pas y toucher
+
+- hosts: localhost
+  remote_user: root
+  tasks:
+
+# Configurations Réseaux
+  - name: Suppression de la passerelle par défaut
+    shell: ip route del default
+    ignore_errors: true
+
+  - name: Configuration de VM1-6/eth1
+    nmcli:
+      type: ethernet
+      conn_name: eth1 via ansible
+      ifname: eth1
+      state: present
+      autoconnect: true
+      ip6: fc00:1234:3::16/64
+
+  - name: Activation explicite de la configuration eth1
+    shell: nmcli con up "eth1 via ansible"
+
+# Activer le routage
+  - name: Activation du routage IPv6
+    sysctl:
+      name: net.ipv6.conf.all.forwarding
+      value: '1'
+      sysctl_set: yes

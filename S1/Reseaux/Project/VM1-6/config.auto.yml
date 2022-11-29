@@ -1,0 +1,24 @@
+# Configuration eth1 / Ansible playbook
+# RAPPEL: eth0 est à vagrant, ne pas y toucher
+
+- hosts: localhost
+  remote_user: root
+  tasks:
+
+# Configurations Réseaux
+  - name: Suppression de la passerelle par défaut
+    shell: ip route del default
+    ignore_errors: true
+
+  - name: Configuration de VM1/eth1
+    nmcli:
+      type: ethernet
+      conn_name: eth1 via ansible
+      ifname: eth1
+      state: present
+      autoconnect: true
+      method6: auto
+
+  - name: Activation explicite de la configuration eth1
+    shell: nmcli con up "eth1 via ansible"
+
