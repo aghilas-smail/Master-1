@@ -32,23 +32,23 @@ void ext_out(int tunfd , char *port) {
 
   // Le stderr est le flux standare de sortie de l'erreur.
   if(erreur<0) {
-    fprint(stderr)
+    fprint(stderr, "Résolution : %s\n",gai_strerror(erreur)); //The gai_strerror() function shall return a text string describing an error value for the getaddrinfo()
+                                          //  and getnameinfo() functions listed in the <netdb.h> header.
+    exit(2);
   }
 
+  // La creation de la socket de type TCP et IP et l'ouverture de serveur.
+  s = socket(resolution->ai_family,resolution -> ai_socktype,resolution -> ai_protocol);
+  /*
+  le ai_family indique la famille d'adresse désirée des adresses renvoyées. */
+  if (s<0) {
+    perror("extt_out: socket est faild");
+    exit(3);
+  }
 
-  do {
-    // open server
-    server_sd = socket(AF_INET6, SOCK_STREAM, 0);
-    if (server_sd < 0) {
-      perror("ext_out: socket() failed");
-      break;
-    }
+// L'utilisation de port en vitesse.
+    err = sets
 
-    err = setsockopt(server_sd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
-    if (err < 0) {
-      perror("ext_out: setsockopt(SO_REUSEADDR) failed");
-      break;
-    }
 
     struct sockaddr_in6 server_addr;
     bzero(&server_addr, sizeof(server_addr));
