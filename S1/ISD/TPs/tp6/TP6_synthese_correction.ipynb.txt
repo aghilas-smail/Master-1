@@ -1,0 +1,311 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Master Informatique AMU, ISD, exercice de synthèse (TP6)\n",
+    "\n",
+    "\n",
+    "Voici un exercice vous permettant de synthétiser quelques unes de vos connaissances expérimentales en matière de classification à partir de données. Le code python doit être le plus concis possible.\n",
+    "\n",
+    "Etant donné le no-free-lunch theorem, nous vous confions la tâche de déterminer le meilleur modèle pour réaliser une tâche de régression transformée en tâche de classification, avec le test statistique qui garantit ce choix avec grande confiance.\n",
+    "\n",
+    "Remettre ce fichier ipynb complété. \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Préparation des données\n",
+    "Nous allons utiliser un jeu de données réel - tiré de *Tsanas & Xifara : Accurate quantitative estimation of energy performance of residential buildings using statistical machine learning tools, Energy and Buildings, Vol. 49, pp. 560-567, 2012* - disponible sur Ametice (dataenergy.csv)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Les 8 premières colonnes correspondent aux attributs descriptifs et les deux dernières, aux charges de chauffage et de climatisation (dans cet ordre).\n",
+    "Pour les utiliser en Python, vous pourrez vous servir du code suivant :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "data = np.loadtxt(\"./dataenergy.csv\")\n",
+    "X = data[:,:-2]\n",
+    "Y = data[:,-2:]\n",
+    "Yheat = Y[:,0]\n",
+    "Ycool = Y[:,1]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Le problème initial, tel que présenté ici, est un problème de régression multi-tâches. Nous allons le simplifier en le transformant en un problème de classification dont la classe sera le niveau de charge de chauffage : par une méthode de clustering, on veut répartir les charges de chauffage en 3 classes : faibles, moyennes, élevées."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "A vous de jouer :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1\n",
+      " 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2\n",
+      " 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+      " 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0\n",
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1\n",
+      " 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2\n",
+      " 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+      " 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0\n",
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1\n",
+      " 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2\n",
+      " 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+      " 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0\n",
+      " 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0\n",
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1\n",
+      " 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2\n",
+      " 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+      " 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0\n",
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1\n",
+      " 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 2 2 2 2 2\n",
+      " 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+      " 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1]\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.cluster import KMeans\n",
+    "Yheat_vector = Yheat.reshape(-1,1)\n",
+    "clusterer = KMeans(n_clusters = 3)\n",
+    "clusterer.fit(X,Yheat_vector)\n",
+    "print(clusterer.labels_)\n",
+    "Yheat_class = clusterer.labels_\n",
+    "# La suite ? il s'agit de définir un classifieur du k-means avec k=3 \n",
+    "# et d'utiliser la méthode 'fit' sur lensemble des etiquettes de chauffage Yheat\n",
+    "\n",
+    "# Attention : les Y sont des vecteurs et les classifieurs sklearn ont besoin d'array :\n",
+    "# il faut les reshaper : Yheat_vector = Yheat.reshape(-1,1)\n",
+    "\n",
+    "# Après apprentissage du kmeans, les classes des données utilisées sont stockées dans mon_classifieur.labels_"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Apprentissage des modèles\n",
+    "Nous voulons comparer deux méthodes de classification supervisée :\n",
+    "1. Les k-plus proches voisins (*KNeighborsClassifier* de la classe *sklearn.neighbors*, hyperparamètre à régler : *n_neighbors*)\n",
+    "2. Les arbres de décision  (*DecisionTreeClassifier* de la classe *sklearn.tree*, hyperparamètre à régler : *max_depth*)\n",
+    "\n",
+    "Ecrivez le code permettant de :\n",
+    "1. Séparer les données en un échantillon d'apprentissage et un échantillon de test (60/40)\n",
+    "2. Sélectionner les meilleurs valeurs des hyper-paramètres sur l'échantillon d'apprentissage par validation croisée en utilisant 10 folds (pour optimisation de l'erreur)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'n_neighbors': 2}\n",
+      "{'max_depth': 16}\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.model_selection import train_test_split\n",
+    "from sklearn.model_selection import GridSearchCV\n",
+    "from sklearn.neighbors import KNeighborsClassifier\n",
+    "from sklearn.tree import DecisionTreeClassifier\n",
+    "import random\n",
+    "import math\n",
+    "\n",
+    "X_app, X_test, y_app, y_test = train_test_split(X,Yheat_class,test_size=0.4,random_state=random.seed())\n",
+    "n_ex = X_app.shape[0]\n",
+    "n_var = X_app.shape[1]\n",
+    "\n",
+    "hyper_parameters_kppv = {'n_neighbors': [2, 2*int(math.log(n_ex))]}\n",
+    "kppv = KNeighborsClassifier()\n",
+    "gs_kppv = GridSearchCV(kppv, hyper_parameters_kppv, refit=True)\n",
+    "gs_kppv.fit(X_app, y_app)\n",
+    "kppv = gs_kppv.best_estimator_\n",
+    "kppv.fit(X_app, y_app)\n",
+    "print(gs_kppv.best_params_)\n",
+    "\n",
+    "hyper_parameters_dt = {'max_depth': [1, 2*n_var]}\n",
+    "dt = DecisionTreeClassifier()\n",
+    "gs_dt = GridSearchCV(dt, hyper_parameters_dt, refit=True)\n",
+    "gs_dt.fit(X_app, y_app)\n",
+    "dt = gs_dt.best_estimator_\n",
+    "dt.fit(X_app, y_app)\n",
+    "print(gs_dt.best_params_)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Analyse des résultats\n",
+    "Afficher sur un graphique les scores de chacun des algorithmes avec la meilleure valeur d'hyperparamètre possible sur l'échantillon de **test**."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# il suffit d'afficher deux points cette question était un peu bete. \n",
+    "# Par contre, nous pouvons tracer l'evolution des scores de chaque algo en fonction de l'hyper-parametre considere"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Pour chacune des méthodes, pour chaque meilleur hyperparamètre, effectuer le test de McNemar sur l'échantillon test pour décider finalement quel est la meilleure solution pour la prédiction de la charge de chauffage, avec 95% de confiance. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# fonction pour est de McNemar (calcule les taux importants, N01 et N10)\n",
+    "def mcNemar(C1_pred, C2_pred, truth):\n",
+    "    n01 = n10 = 0\n",
+    "    nex = truth.shape[0]\n",
+    "    for i in range(nex):\n",
+    "        if C1_pred[i] != C2_pred[i]:\n",
+    "            if C1_pred[i] == truth[i]:\n",
+    "                n10 += 1\n",
+    "            else:\n",
+    "                n01 += 1\n",
+    "    return [n01, n10]\n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Remise du résultat"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Alors, quelle est la meilleure solution (algorithme et hyper-paramètres ) ? \n",
+    "\n",
+    "Et enfin, pour cette solution, quelle est le taux réel de bonne classification, estimé par validation croisée 10 folds ? "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "le meilleur modele a 95% est  decision_tree  avec  max depht  =  16\n",
+      "erreur =  0.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.model_selection import cross_val_score\n",
+    "# calcul des scores\n",
+    "score_kppv = kppv.score(X_test, y_test)\n",
+    "score_dt = dt.score(X_test, y_test)\n",
+    "\n",
+    "# supposons que ce soit l'arbre de decision le meilleur\n",
+    "the_best = \"decision_tree\"\n",
+    "the_hyperparam = \"max depht\"\n",
+    "the_hyperparam_value = gs_dt.best_params_['max_depth']\n",
+    "tbo = dt\n",
+    "\n",
+    "if ( score_kppv > score_dt):\n",
+    "    # c est en realite les kppv les meilleurs\n",
+    "    the_best = \"kppv\"\n",
+    "    the_hyperparam = \"k\"\n",
+    "    the_hyperparam_value = gs_kppv.best_params_['n_neighbors']\n",
+    "    tbo = kppv\n",
+    "    \n",
+    "y_test_pred_dt = dt.predict(X_test)\n",
+    "y_test_pred_kppv = kppv.predict(X_test)\n",
+    "\n",
+    "# calcul des taux de McNemar\n",
+    "n_kppv_dt, n_dt_kppv = mcNemar(y_test_pred_dt, y_test_pred_kppv, y_test)\n",
+    "denom = n_kppv_dt + n_dt_kppv\n",
+    "if denom == 0:\n",
+    "    seuil = 10.\n",
+    "else:\n",
+    "    seuil = (abs(n_kppv_dt - n_dt_kppv) - 1)**2/denom\n",
+    "\n",
+    "if seuil > 3.84:\n",
+    "    # la superiorite du meilleur modele est assuree avec une confiance > 95\n",
+    "    erreur = 1. - cross_val_score(tbo, X, Yheat_class, cv=10).mean()\n",
+    "    print(\"le meilleur modele a 95% est \", the_best, \" avec \", the_hyperparam, \" = \", the_hyperparam_value)\n",
+    "    print(\"erreur = \", erreur)\n",
+    "else: \n",
+    "    print(\"Sans taux de confiance assure, le meilleur modele est \", the_best, \" avec \", the_hyperparam, \" = \", the_hyperparam_value)\n",
+    "    print(\"erreur = \", erreur)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
