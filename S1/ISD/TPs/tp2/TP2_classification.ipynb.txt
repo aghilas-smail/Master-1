@@ -1,0 +1,815 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "9k8hIyfX4Qij"
+   },
+   "source": [
+    "# Introduction à la Science de Données\n",
+    "# TP2 -  Classification par les $k$ plus proches voisins\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "0yXXV12YKxT-"
+   },
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "lTccv7A74Qin"
+   },
+   "source": [
+    "La documentation Scikit-learn sur les $k$ plus proches voisins se trouve ici: http://scikit-learn.org/stable/modules/neighbors.html\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "CrhO5HxvJ31F"
+   },
+   "source": [
+    "Avant de commencer, vérifiez les versions des paquets Python:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 104
+    },
+    "colab_type": "code",
+    "id": "3FsMuz2xKDhz",
+    "outputId": "98da1a8a-f728-4d5b-cb56-057c56cd126b"
+   },
+   "outputs": [],
+   "source": [
+    "import sys\n",
+    "import numpy as np # importation du package numérique\n",
+    "import matplotlib\n",
+    "import sklearn\n",
+    "\n",
+    "print('python: {} (version 3 obligatoire)'.format(sys.version))\n",
+    "print('numpy: {} (version conseillée mais pas obligatoire:)'.format(np.__version__))\n",
+    "print('matplotlib: {} (version conseillée mais pas obligatoire: 3.0.0 au moins)'.format(matplotlib.__version__))\n",
+    "print('scikit-learn: {} (version conseillée mais pas obligatoire: 0.19 au moins)'.format(sklearn.__version__))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "ikb9OxL9MsVj"
+   },
+   "source": [
+    "Une version récente de Matplotlib est particulièrement souhaitable pour que l'affichage des images se fasse correctement, sans \"lissage\"."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "_oWf2JPjfcbX"
+   },
+   "source": [
+    "## 1. Données *digits*\n",
+    "Dans la première partie de ce TP, nous allons utiliser des données déjà présentes dans scikit-learn, à l'image des données Iris du premier TP.\n",
+    "\n",
+    "Ces données sont très connues en apprentissage, sous le noms de MNIST. Elles sont composées d'images de chiffres manuscrits à une résolution de 8*8. En scikit-learn, elles se nomment digits : "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "ZdPIwHd0gNA-"
+   },
+   "outputs": [],
+   "source": [
+    "from sklearn.datasets import load_digits\n",
+    "\n",
+    "digitsData=load_digits() # jeu de données digits\n",
+    "X=digitsData.data # les exemples, un array numpy, chaque élément est aussi un array\n",
+    "y=digitsData.target # les classes"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "7sIgf8FP9UMj"
+   },
+   "source": [
+    "On peut regarder quelques informations :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 52
+    },
+    "colab_type": "code",
+    "id": "PJ_o58ap9dBH",
+    "outputId": "a9eac142-d121-4c6e-d2d8-7a43324d9c5c"
+   },
+   "outputs": [],
+   "source": [
+    "print(X.dtype, X.shape)\n",
+    "print(y.dtype, y.shape)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "TPTbrn1niFXe"
+   },
+   "source": [
+    "Chaque donnée est donc une image de 8 pixels par 8 pixels, en niveau de gris (256 nuances possibles), stockée sous la forme d'un vecteur de dimension 64 comme une ligne de la matrice X (il y a 1797 images) et avec la valeur de la classe associée stockée dans un vecteur Y à part (comme pour Iris). Mais on peut quand même regarder l'image initiale :\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 527
+    },
+    "colab_type": "code",
+    "id": "TDLOkUoZinAj",
+    "outputId": "f6d3b6f1-da26-440a-c153-05603a151425"
+   },
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt  # le package de visualisation\n",
+    "# la ligne spéciale pour que le notebook affiche comme il faut :\n",
+    "%matplotlib inline  \n",
+    "ix=65\n",
+    "donnee = X[ix,:] # on récupère une ligne, donc une donnée\n",
+    "classe = y[ix]   # et sa classe\n",
+    "print(\"Le vecteur de l'image d'indice 42 : \", donnee)\n",
+    "\n",
+    "image = np.reshape(donnee,(8,8)) # on met les 8 morceaux de taille 8 du vecteur les uns en dessous des autres\n",
+    "print(image) # on affiche la matrice de pixels\n",
+    "plt.imshow(image) # on affiche l'image qui lui correspond\n",
+    "plt.title('Donnee numero %i, de la classe %i \\n' % (ix, classe), fontsize = 16) # avec un titre\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "GvoCa-lMppar"
+   },
+   "source": [
+    "On peut faire des affichages plus intéressant, exemple sur les 5 premières données :"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 463
+    },
+    "colab_type": "code",
+    "id": "23nNOIYy7h1K",
+    "outputId": "3a7d8cd7-de3c-479f-b2bc-cd2e4330134c"
+   },
+   "outputs": [],
+   "source": [
+    "plt.figure(figsize=(16,4))\n",
+    "for index in range(5):\n",
+    "    image = X[index, :]\n",
+    "    classe = y[index]\n",
+    "    plt.subplot(1, 5, index + 1)\n",
+    "    plt.imshow(np.reshape(image, (8,8)), cmap=plt.cm.gray)\n",
+    "    plt.title('Classe : %i\\n' % classe, fontsize = 18)\n",
+    "plt.show()\n",
+    "    \n",
+    "plt.figure(figsize=(16,4))\n",
+    "for index in range(5):\n",
+    "    image = X[42+index, :]\n",
+    "    classe = y[42+index]\n",
+    "    plt.subplot(1, 5, index + 1)\n",
+    "    plt.imshow(np.reshape(image, (8,8)), cmap=\"copper\")\n",
+    "    plt.title('Classe : %i\\n' % classe, fontsize = 18)  \n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "Ci58h2vz4Qiq"
+   },
+   "source": [
+    "## 2. Création, entraînement et évaluation d'un classifieur"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "efNARzTG4Qiv"
+   },
+   "source": [
+    "Notre objectif est maintenant d'apprendre, sur la base d'un échantillon d'images \"chiffres\", un classifieur capable de prédire le chiffre qui correspond à une nouvelle image. Nous allons utiliser la méthode des $k$-plus proches voisins pour cet apprentissage. Elle est implémentée dans un package appelé neighbors. Examinons la série d'instructions suivante:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 5626
+    },
+    "colab_type": "code",
+    "id": "NyjLe8Ai4Qiy",
+    "outputId": "cb1906c2-4e87-418d-deae-1c016179a679"
+   },
+   "outputs": [],
+   "source": [
+    "from sklearn import neighbors as nn # importation du package d'algorithmes travaillant sur les points voisins\n",
+    "help(nn.KNeighborsClassifier) # que fait cette instruction qui sera très utile par la suite?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "EHnrWhos4Qi9"
+   },
+   "source": [
+    "Sympa, non ? Ce type d'instruction est utilisable pour toute classe de Python. \n",
+    "\n",
+    "Continuons l'exploration des $k$ plus proches voisins. Dans la série d'instructions suivante, on indique comment un classifieur peut être appris à partir de données étiquetées, et comment réaliser la prédiction sur un nouvel exemple."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "OOZ0WxXZ4QjO"
+   },
+   "source": [
+    "Les fonctions *predict* et *fit* existent **pour tous les classifieurs** disponibles dans scikit-learn.\n",
+    "\n",
+    "On note ici la syntaxe de la fonction predict: on lui passe en réalité un tableau d'exemples (ici, un tableau avec un seul exemple constitué de 64 attributs), et elle renvoit un tableau contenant la classe prédite pour chaque exemple du tableau en paramètre. Evidemment, dans les tableaux en entrée et en sortie, les indices des classes prédites correspondent aux indices des exemples en entrée ! \n",
+    "\n",
+    "Ainsi, lorsque l'on sait que l'on n'applique predict qu'à un seul exemple, une sélection finale [0] comme ci-après renvoit la première (et la seule) composante du tableau de résultat. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 34
+    },
+    "colab_type": "code",
+    "id": "abQTK7Mm4QjH",
+    "outputId": "308c7d7d-9ae3-410b-afae-e54a1275a692"
+   },
+   "outputs": [],
+   "source": [
+    "nb_voisins = 15 # on fixe le nombre de voisins, à partir de 2 et au max le nombre d'exemples dans le jeu de données\n",
+    "clf = nn.KNeighborsClassifier(nb_voisins) \n",
+    "# ci-dessus, création d'un classifieur: la variable clf est un \"objet\" classifieur, vide pour l'instant \n",
+    "#print(clf) # le classifieur est vide pour l'instant, il n'a pas été entraîné sur des données\n",
+    "clf.fit(X, y) # entraînement du classifieur clf sur les données étiquetées\n",
+    "nouvel_ex = X[50, :]  # On extrait la 50e image\n",
+    "print('prédiction pour le nouvel exemple: ',\n",
+    "      clf.predict(nouvel_ex.reshape(1,-1))) # prédiction du modèle appris sur la description d'une image aléatoire"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 34
+    },
+    "colab_type": "code",
+    "id": "9zal_50w4QjR",
+    "outputId": "17ba9ad8-6e57-4e6a-8583-7883b587068c"
+   },
+   "outputs": [],
+   "source": [
+    "print('prédiction pour le nouvel exemple: ', clf.predict(nouvel_ex.reshape(1,-1))[0])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "FymLN7OV4Qja"
+   },
+   "source": [
+    "Pour certains types de classifieurs, on peut même récupérer la probabilité que le classifieur attribue à l'appartenance de l'exemple à chaque classe possible. La fonction *predict_proba* fonctionne comme la fonction *predict*, sauf que le tableau en sortie contient, pour chaque exemple du tableau en entrée, un tableau de probabilité de la même taille que le nombre de classes."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 69
+    },
+    "colab_type": "code",
+    "id": "Lnzq5Zut4Qjf",
+    "outputId": "11f1eae2-0314-4ceb-cc00-e2c8a3503a63",
+    "scrolled": true
+   },
+   "outputs": [],
+   "source": [
+    "autre_ex = X[123, :] # on génère un autre exemple en prenant une autre image\n",
+    "print(clf.predict_proba(nouvel_ex.reshape(1,-1))[0]) # probabilité d'appartenance à chaque classe pour ce chiffre\n",
+    "print(clf.predict_proba(autre_ex.reshape(1,-1))[0]) # idem pour un autre exemple"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "SJgdW_NF4Qjn"
+   },
+   "source": [
+    "A votre avis, quelle classe sera attribuée au deuxième exemple, et pourquoi ? Indiquez ci-après l'instruction à exécuter pour vérifier. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "xwmb39cy4Qjs"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "WsSaiAzO4Qj9"
+   },
+   "source": [
+    "Une première façon d'évaluer la qualité d'un classifieur est de le tester sur les exemples qui ont servi à l'apprendre. On utilise du coup la même fonction *predict*, appliquée au tableau des exemples d'apprentissage. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 139
+    },
+    "colab_type": "code",
+    "id": "at1QD73r4Qj_",
+    "outputId": "ba6383d8-b741-414d-98b7-277e0c0a7b82"
+   },
+   "outputs": [],
+   "source": [
+    "f_X = clf.predict(X) # vecteur des classes prédites pour chaque exemple de l'ensemble d'apprentissage\n",
+    "print(X[f_X!=y]) # le tableau d'exemples pour lesquels la prédiction a été mauvaise"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "QkfXE6dx4QkF"
+   },
+   "source": [
+    "Pour vous rendre compte de l'origine possible des erreurs de prédiction, faites une boucle sur toutes les images pour lesquelles la prédiction est erronnée en affichant à chaque fois l'image 8x8 avec dans le titre l'indice de l'image, la classe originale et la classe prédite (pour cela, on peut utiliser la fonction *numpy.argwhere* avec un peu de jugeotte)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "ZATD9txd4QkJ"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "C7n9FWWs4QkV"
+   },
+   "source": [
+    "Chaque classifieur possède une fonction score, qui permet de comparer les prédictions d'un ensemble d'exemples $X$ pour lesquelles on connaît les étiquettes $y$ : la fonction calcule le taux de bonne classifications. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 34
+    },
+    "colab_type": "code",
+    "id": "UJsi-fuG4QkY",
+    "outputId": "99e69c99-eb6e-484a-f8e5-0333c20b5202"
+   },
+   "outputs": [],
+   "source": [
+    "print('taux de bonne classification', clf.score(X,y)) \n",
+    "# taux de bonne classification du modèle sur l'ensemble d'apprentissage (car X et y sont les données d'apprentissage): fonction score"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "c2I8C2sn4Qkd"
+   },
+   "source": [
+    "On la détourne facilement pour obtenir le taux d'erreur: faites le (vous devez obtenir 0.01446855...)!"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "Z3kjUGxv4Qki"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "ag7_Jwgr4Qk6"
+   },
+   "source": [
+    "## 3. Variation du nombre de voisins"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "0GE1r3Yq4Qk7"
+   },
+   "source": [
+    "L'algorithme des $k$-plus proches voisins fonctionne avec plusieurs hyper-paramètres (paramètres de l'agorithme, pas du modèle appris): la valeur de $k$ est un de ces paramètres. Réalisez un programme qui fait varier cet hyper-paramètres dans un intervalle comprenant des valeurs entre 1 et 35, et stocker l'évolution de l'erreur d'apprentissage (celle calculée sur l'échantillon d'apprentissage), puis en réaliser une courbe avec en abscisse les valeurs de k, et en ordonnées les erreurs.\n",
+    "\n",
+    "On peut utiliser pour ce faire la fonction de construction d'un tableau *numpy.arange* (cf documentation), la fonction *len(X)* qui renvoit la taille d'un tableau à une dimension. Pour la courbe, on utilisera simplement *plot(abs, ord)* du package *pyplot* de *matplotlib*, comme vue au premier TP."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "RK49MqBj4Qk9"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "1FKPvlY14QlQ"
+   },
+   "source": [
+    "Qu'observez-vous ? A quelle valeur de k atteint-on un meilleur classifieur ? Quelle est globalement, sur ce jeu de données, l'influence de $k$? Que se passe-t-il exactement pour $k=1$?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "f6bMmcGP4QlR"
+   },
+   "source": [
+    "## 4. Evaluation de l'erreur réelle du classifieur appris "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "v8h8dMnM4QlT"
+   },
+   "source": [
+    "### 4.1. Hold-out\n",
+    "\n",
+    "Lorsque le score du classifieur appris est évalué sur l'ensemble d'apprentissage, il est en général sur-estimé (pourquoi ?) et donc, très peu fiable. La meilleure méthode pour évaluer un classifieur consiste à calculer son score sur un échantillon test, indépendant de l'échantillon d'apprentissage mais généré dans les mêmes\n",
+    "conditions. Lorsqu'on dispose d'un seul ensemble d'exemples (comme c'est le cas de *digits*), il faut donc:\n",
+    "\n",
+    "* répartir les données en un sous-ensemble d'apprentissage et un sous-ensemble test,\n",
+    "* entrainer un classifieur sur l'ensemble d'apprentissage \n",
+    "* évaluer ce classifieur sur l'ensemble test (on a ici une évaluation de l'erreur réelle, qui reste instable puisque dépend du découpage effectué)\n",
+    "\n",
+    "Si les données sont peu nombreuses, comme c'est le cas pour le jeu de données *digits*, cette évaluation risque d'être pessimiste (avez-vous une idée de pourquoi ? Si oui, expliquez, sinon réfléchissez!).\n",
+    "\n",
+    "Scikit-learn vient avec toute une panoplie d'outils pour évaluer cette erreur. Pour l'instant, nous n'utiliserons que la fonction qui permet de diviser un échantillon en deux parties (attributs et classes): c'est la fonction *train_test_split* du package *model_selection*, que nous appliquons ci-après sur Iris (nous ne printons que les trois premiers exemples de chaque sous-échantillon, avec leurs étiquettes):\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 538
+    },
+    "colab_type": "code",
+    "id": "n_FJ2xiw4QlT",
+    "outputId": "26542d2d-907a-483c-d176-6424d39a3f52"
+   },
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split\n",
+    "# production de deux sous-échantillon\n",
+    "Xtrain, Xtest, ytrain, ytest = train_test_split(X,y,test_size=0.25, random_state=42) \n",
+    "print(Xtrain[:3,:], ytrain[:3])\n",
+    "print(Xtest[:3,:], ytest[:3])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "56FteqCq4QlZ"
+   },
+   "source": [
+    "Ici, nous produisons un découpage dans lequel l'ensemble d'apprentissage représente 75% de l'échantillon initial, et l'échantillon de test représente 25% des données initiales.\n",
+    "\n",
+    "Il faut bien comprendre le rôle du paramètre random_state qui initialise le processus aléatoire: avec la même valeur dans deux appels de lafonction train_test_split, la séparation du jeu de données obtenue restera identique, car l'initialisation de la sélection aléatoire est la même. Pour illustrer cela, réaliser un second appel avec les mêmes paramètres et vérifier les premiers éléments des tableaux obtenus qui doivent être similaires à ceux ci-avant; puis réaliser un troisième appel avec une autre valeur pour random_state, et vérifier à nouveau les premiers éléments des tableaux pour constater qu'ils ont changé."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "En vous inspirant de ce mode de découpage, écrire une séquence d'instructions permettant de séparer *digits* en deux parties égales, d'apprendre un 3-plus proches voisins sur le premier sous-échantillon, et de le tester sur le second: vous obtenez une **estimation** de l'erreur réelle. Obtenez-vous la même erreur que celle d'apprentissage mesurée précédemment ?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "b8kQdGIU4QlZ"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "6f608IhM4Qlo"
+   },
+   "source": [
+    "Faites maintenant à nouveau varier $k$, et pour chaque valeur, indiquez l'erreur réelle estimée sur la base d'un train_test_split de 70%, 30% ; tracer la courbe. Observez-bien les différences de valeurs des erreurs d'apprentissage et réelle: pourquoi sont-elles différentes ? Que constatez-vous ?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "4T5bH6HG4Qlp"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Le hold-out pratiqué ainsi mène à une estimation de l'erreur réelle qui dépend fortement de l'ensemble train et de l'ensemble test, qui ont été obtenus au hasard, où nous ne contrôlons que leur taille et le fait qu'un exemple ne peut être dans l'un et l'autre (quoiqu'il existe des variantes!). \n",
+    "\n",
+    "Afin d'éviter cette trop forte dépendance qui mène à une estimation très biaisée, l'usage est généralement de répéter cette séquence \"split -- learn -- test -- estimate error \" un certain nombre de fois, disons $T$ fois, en s'assurant que les ensembles produits au hasard à chaque fois sont différents d'une itération à l'autre. Une fois les $T$ séquences réalisées, une meilleure estimation est donnée par la moyenne des erreurs estimées à chaque séquence.\n",
+    "\n",
+    "Programmez la répétition de $10$ séquences de hold-out pour estimer l'erreur réelle d'un kppv avec $k=3$ en moyennant les erreurs obtenues à chaque séquence (attention à garantir des splits différents à chaque séquence !)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 4.2. Validation croisée\n",
+    "\n",
+    "Une façon très classique et plutôt robuste d'estimer l'erreur réelle est de mettre en place une validation croisée : c'est une variante du hold-out répété, mais qui s'assure que chaque exemple a été pris au moins une fois pour apprendre, et au moins une fois pour tester.\n",
+    "\n",
+    "Sous scikit learn, nous disposons de la fonction __cross_val_score__ du package __sklearn.model_selection__. Il suffit de lui passer le classifieur considéré, le tableau des données, celui des classes, et le nombre de folds à créer: voir la documentation https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html. Attention, cette fonction ne crée pas un modèle, mais n'est utilisée que pour estimer le score.\n",
+    "\n",
+    "Ecrire un programme permettant d'estimer, par validation croisée $10$ folds, l'erreur d'un kppv avec $k=3$ sur les données digits. Obtenez-vous la même estimation de l'erreur réelle qu'avec le hold-out répété ?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Par défaut, cette fonction estime l'erreur réelle (ou le taux de bonne classification). Il est cependant possible d'estimer d'autres métriques, comme le rappel, la $F$-mesure, etc., grâce à son argument __scoring__ qui peut être affecté à une chaîne de caractères spécifiant la métrique désirée (parmi toutes celles implémentées dans sklearn, cf https://scikit-learn.org/stable/modules/model_evaluation.html#the-scoring-parameter-defining-model-evaluation-rules)\n",
+    "\n",
+    "Estimez par validation croisée la F1-mesure de notre classifieur par validation croisée $5$ folds (attention, le problème de classification n'est pas binaire, ici)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "BtuiGNxH4Ql8"
+   },
+   "source": [
+    "## 5. Variation autour de la métrique (optionnel mais instructif)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "fpHiq-m24Ql9"
+   },
+   "source": [
+    "Au delà du nombre de voisins, un autre hyper-paramètre est la métrique utilisée pour calculer la distance entre les exemples. Par défaut, la distance de Minkowski est utilisée, avec le paramètre $p=2$ qui indique que nous considérons la distance euclidienne. Avec $p=1$, nous aurions la distance de manhattan, et de façon générale, avec p>0, la distance utilisée est $l_p$ :\n",
+    "\n",
+    "$$l_p(x, x')=(\\sum_{i=1}^n |x_i - x'_i|^p)^{\\frac{1}{p}}$$\n",
+    "\n",
+    "Ecrire un programme permettant de faire varier la distance utilisée pour évaluer son impact sur les performances, en faisant aussi varier $k$. Tracez les 3 courbes sur un même plot (cf. doc de *plot* pour voir comment faire), une pour chaque valeur de $p$ parmi ${1,2,5}$."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "AtpJAvCs4QmA"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "H51kYh9bXV34"
+   },
+   "source": [
+    "## 6. Matrice de confusion\n",
+    "Maintenant que vous avez sélectionné les meilleurs valeurs de $k$ et $p$, vous pouvez analyser plus finement les performances de votre meilleur classifieur. Pour cela, construisez la matrice de confusion, de taille $10 \\times 10$, dans laquelle l'éléments $(i,j)$ correspond au nombre de fois qu'un exemple d'étiquette $i$ a été prédit avec une étiquette $j$. Quelles sont les confusions fréquentes?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "vMCdxKu8YKMn"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "xIBW2C-kYNXD"
+   },
+   "source": [
+    "**Optionnel.**\n",
+    "\n",
+    "Une manipulation intéressante à faire consiste à retourner les images en leur faisant subir une rotation à 180º: de cette façon, les 6 ressemblent ensuite à des 9 et vice-versa, les 0 restent des 0, et les autres chiffres donnent parfois des caractères indéfinis. Faites des essais sur quelques exemples en les affichant pour trouver comment retourner une image, puis appliquez un k-NN ainsi: apprenez sur tout l'ensemble d'images originales, testez sur l'ensemble de toutes les images retournées, affichez la matrice de confusion pour voir dans quelle mesure les 6 sont reconnus comme des 9 et observez d'autres phénomènes."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "qrEovoChYL-5"
+   },
+   "outputs": [],
+   "source": [
+    "# a vous"
+   ]
+  }
+ ],
+ "metadata": {
+  "colab": {
+   "collapsed_sections": [],
+   "name": "tp2-M1ISD.ipynb",
+   "provenance": [],
+   "toc_visible": true,
+   "version": "0.3.2"
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
