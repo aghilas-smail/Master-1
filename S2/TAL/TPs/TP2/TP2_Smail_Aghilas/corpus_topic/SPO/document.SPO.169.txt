@@ -1,0 +1,13 @@
+PARIS, 7 jan (AFP) - Résultats de la 7e journée de groupe D de la Coupe ULEB de basket-ball messieurs disputée mardi:
+TB Bonn (ALL) - Zeleznik Belgrade (SEM)          60 - 76
+Verviers-Pepinster (BEL) - Virtus Bologne (ITA)  86 - 71
+Joventut Badalone (ESP) - Hapoël Jérusalem (ISR) 84 - 77
+Classement:                      Pts   J   G   P   bp   bc   dif
+ 1. Zeleznik Belgrade             13   7   6   1  574  497   +77
+ 2. Hapoël Jérusalem              11   7   4   3  573  557   +16
+  . Joventut Badalone             11   7   4   3  563  558    +5
+ 4. Verviers-Pepinster            10   7   3   4  523  526    -3
+ 5. Virtus Bologne                 9   7   2   5  528  567   -39
+  . TB Bonn                        9   7   2   5  510  566   -56
+Les 2 premiers et les 4 meilleurs 3e sur l'ensemble des groupes qualifiés pour les 8e de finale.
+db/bd

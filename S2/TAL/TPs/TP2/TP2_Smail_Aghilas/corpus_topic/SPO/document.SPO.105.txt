@@ -1,0 +1,27 @@
+PARIS, 5 jan (AFP) - Programme de la 7e journée de la 1re phase de la Coupe ULEB de basket-ball messieurs qui aura lieu mardi (en heures GMT):
+. Mardi:
+Groupe A:
+(15h20) BC Sofia (BUL) - Francfort (ALL) 
+(18h30) Amsterdam (PBS) - Olimpia Milan (ITA)
+(19h30) Real Madrid (ESP) - KK Zagreb (CRO) 
+Groupe B:
+(18h30) Cologne (ALL) - Las Palmas (ESP) 
+(19h00) KK Zadar (CRO) - Lleida (ESP) 
+(19h30) KK Belgrade (SEM) - Kapfenberg (AUT) 
+Groupe C:
+(17h00) Ventspils (LET) - Charleroi (BEL) 
+(17h15) Etoile Rouge Belgrade (SEM) - Gravelines (FRA) 
+(19h45) Varèse (ITA) - Alicante (ESP) 
+Groupe D:
+(18h30) Bonn (ALL) - Zeleznik Belgrade (SEM) 
+(19h30) Verviers-Pepinster (BEL) - Virtus Bologne (ITA) 
+(19h45) Joventut Badalone (ESP) - Hapoël Jerusalem (ISR) 
+Groupe E:
+(17h30) Kozani (GRE) - Brunswick (ALL) 
+(19h00) Le Mans (FRA) - EF Arnhem-Nimègue (PBS) 
+(19h30) Podgorica (SEM) - Estudiantes Madrid (ESP) 
+Groupe F:
+(17h30) Lietuvos Vilnius (LIT) - Split (CRO) 
+(19h30) Cholet (FRA) - Sopot (POL) 
+(20h00) Brighton (ENG) - Ionikos (GRE) 
+db/jfm

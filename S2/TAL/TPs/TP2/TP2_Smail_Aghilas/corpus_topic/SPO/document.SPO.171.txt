@@ -1,0 +1,13 @@
+PARIS, 7 jan (AFP) - Résultats de la 7e journée de groupe F de la Coupe ULEB de basket-ball messieurs disputée mardi:
+L. Vilnius (LIT) - Split (CRO)         103 - 56
+Cholet (FRA) - Sopot (POL)              64 - 61
+Brighton (ENG) - Ionikos Athènes (GRE)  86 - 81
+Classement:                      Pts   J   G   P   bp   bc   dif
+ 1. L. Vilnius                    13   7   6   1  546  468   +78
+ 2. Sopot                         12   7   5   2  532  444   +88
+ 3. Cholet                        11   7   4   3  534  529    +5
+ 4. Brighton                       9   7   2   5  532  554   -22
+  . Ionikos Athènes                9   7   2   5  538  582   -44
+  . Split                          9   7   2   5  515  620  -105
+Les 2 premiers et les 4 meilleurs 3e sur l'ensemble des groupes qualifiés pour les 8e de finale.
+db/bd

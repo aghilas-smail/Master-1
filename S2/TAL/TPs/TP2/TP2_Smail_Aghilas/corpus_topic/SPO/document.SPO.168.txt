@@ -1,0 +1,13 @@
+PARIS, 7 jan (AFP) - Résultats de la 7e journée de groupe C de la Coupe ULEB de basket-ball messieurs disputée mardi:
+Ventspils (LET) - Charleroi (BEL)              83 - 72
+Etoile Rouge Belgrade (SEM) - Gravelines (FRA) 81 - 62
+Varèse (ITA) - Alicante (ESP)                  93 - 78
+Classement:                      Pts   J   G   P   bp   bc   dif
+ 1. Varèse                        12   7   5   2  583  535   +48
+  . Ventspils                     12   7   5   2  555  536   +19
+ 3. Charleroi                     11   7   4   3  534  538    -4
+ 4. Etoile Rouge Belgrade         10   7   3   4  578  568   +10
+ 5. Gravelines                     9   7   2   5  491  524   -33
+  . Alicante                       9   7   2   5  538  578   -40
+Les 2 premiers et les 4 meilleurs 3e sur l'ensembles des groupes qualifiés pour les 8e de finale.
+db/bd 

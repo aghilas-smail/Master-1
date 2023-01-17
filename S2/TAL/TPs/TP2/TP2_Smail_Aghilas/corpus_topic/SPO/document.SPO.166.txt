@@ -1,0 +1,13 @@
+PARIS, 7 jan (AFP) - Résultats de la 7e journée de groupe A de la Coupe ULEB de basket-ball messieurs disputée mardi:
+BC Sofia (BUL) - Francfort (ALL)      82 - 84
+Amsterdam (PBS) - Olimpia Milan (ITA) 67 - 73
+Real Madrid (ESP) - KK Zagreb (CRO)   98 - 64
+Classement:                      Pts   J   G   P   bp   bc   dif
+ 1. Olimpia Milan                 13   7   6   1  547  458   +89
+ 2. Francfort                     12   7   5   2  561  512   +49
+  . BC Sofia                      12   7   5   2  611  598   +13
+ 4. Real Madrid                   11   7   4   3  557  520   +37
+ 5. KK Zagreb                      8   7   1   6  553  623   -70
+ 6. Amsterdam                      7   7   0   7  440  558  -118
+Les 2 premiers et les 4 meilleurs 3e sur l'ensemble des groupes qualifiés pour les 8e de finale. 
+db/bd

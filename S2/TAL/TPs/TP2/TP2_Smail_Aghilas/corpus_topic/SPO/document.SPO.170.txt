@@ -1,0 +1,13 @@
+PARIS, 7 jan (AFP) - Résultats de la 7e journée de groupe E de la Coupe ULEB de basket-ball messieurs disputée mardi:
+Kozani (GRE) - Brunswick (ALL)             95 - 76
+Le Mans (FRA) - ET Arnhem-Nimègue (PBS)    83 - 73
+Podgorica (SEM) - Estudiantes Madrid (ESP) 71 - 84
+Classement:                      Pts   J   G   P   bp   bc   dif
+ 1. Estudiantes Madrid            13   7   6   1  581  500   +81
+ 2. Kozani                        12   7   5   2  543  526   +17
+ 3. Le Mans                       11   7   4   3  540  525   +15
+ 4. Podgorica                     10   7   3   4  573  603   -30
+ 5. Brunswick                      9   7   2   5  531  585   -54
+ 6. ET Arnhem-Nimègue              8   7   1   6  575  604   -29
+Les 2 premiers et les 4 meilleurs 3e sur l'ensemble des groupes qualifiés pour les 8e de finale.
+db/bd

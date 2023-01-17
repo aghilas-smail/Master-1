@@ -1,0 +1,14 @@
+PARIS, 7 jan (AFP) - Résultats de la 7e journée de groupe B de la Coupe ULEB de basket-ball messieurs disputée mardi:
+Cologne (ALL) - Las Palmas (ESP)     62 - 77
+KK Belgrade (SEM) - Kapfenberg (ALL) 77 - 65
+. Mercredi:
+KK Zadar (CRO) - Lleida (ESP)
+Classement:                      Pts   J   G   P   bp   bc   dif
+ 1. Las Palmas                    13   7   6   1  564  462  +102
+ 2. Cologne                       11   7   4   3  508  536   -28
+ 3. Lleida                        10   6   4   2  478  455   +23
+ 4. KK Zadar                       9   6   3   3  452  417   +35
+ 5. KK Belgrade                    9   7   2   5  515  534   -19
+ 6. Kapfenberg                     8   7   1   6  497  608  -111
+Les 2 premiers et les 4 meilleurs 3e sur l'ensemble des groupes qualifiés pour les 8e de finale.
+db/bd
