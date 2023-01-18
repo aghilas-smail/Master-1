@@ -1,0 +1,34 @@
+*{
+font-family:Verdana, Arial, Helvetica;
+}
+body{
+background-color:#FFFFFF;
+margin-left:auto;
+margin-right:auto;
+width:770px;
+}
+body,h1{
+text-align:center;
+}
+#conteneur{
+width:770px;
+text-align:left;
+}
+h1{
+font-size:1.5em;
+}
+#menu{
+width:150px;
+float:left;
+font-size:0.8em;
+}
+#menu li{
+list-style-type:none;
+line-height:20px;
+}
+#contenu{
+width:620px;
+float:right;
+width:615px;
+text-align:left;
+}

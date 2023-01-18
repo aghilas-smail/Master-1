@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<!ELEMENT stock    (produit+)>
+<!ELEMENT produit  (nom,prix?)>
+<!ELEMENT nom      (#PCDATA)>
+
+<!ELEMENT prix     (#PCDATA)>
+<!ATTLIST prix
+    monnaie (Euros|Francs) #IMPLIED
+    >

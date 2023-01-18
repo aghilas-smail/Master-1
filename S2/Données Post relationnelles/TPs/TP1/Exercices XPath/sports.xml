@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Sports SYSTEM "sports.dtd">
+<Sports>
+	<Sport>
+		<Discipline categorie="J">
+			<Titre>Le tennis</Titre>
+			<Sportif>Donald Young</Sportif>
+			<Trophet>4</Trophet>
+			<Classement>38</Classement>
+		</Discipline>
+		<Compet cat="I">
+			<Title>roland garros</Title>
+			<Player>Roger Federer</Player>
+			<Trophy>76</Trophy>
+			<Ranking>1</Ranking>
+		</Compet>
+		<Discipline categorie="J" nbre="sept">
+			<Titre>Basketball</Titre>
+			<Sportif>BERTEAU Quentin</Sportif>
+			<Sportif>MERI Benjamin</Sportif>
+			<Sportif>THOMAS Louison</Sportif>
+			<Sportif>THIMON Adrien</Sportif>
+			<Trophet>12</Trophet>
+			<Classement>125</Classement>
+		</Discipline>
+		<Compet cat="F">
+			<Title>Jeux Olympiques</Title>
+			<Organizer year="2012">England</Organizer>
+			<Player>China team</Player>
+			<Trophy>88</Trophy>
+			<Ranking>2</Ranking>
+		</Compet>
+		<Compet cat="I">
+			<Title>Judo</Title>
+			<Player>Tiago Camilo</Player>
+			<Trophy>9</Trophy>
+		</Compet>
+		<Discipline categorie="A" nbre="sept">
+			<Titre>Danse acrobatique</Titre>
+			<Sportif>Maria Di Sanchez</Sportif>
+			<Sportif>Laura Bitzeg</Sportif>
+			<Sportif>Patricia Lanbini</Sportif>
+			<Sportif>Pauline fandore</Sportif>
+			<Sportif>Aline de Paris</Sportif>
+			<Sportif>Sylvia Rodriguez</Sportif>
+			<Sportif>Claudette Martin</Sportif>
+			<Trophet>2</Trophet>
+			<Classement>18</Classement>
+		</Discipline>
+		<Compet cat="I">
+			<Title>Boxe</Title>
+			<Player>Wladimir Klitschko</Player>
+			<Trophy>5</Trophy>
+			<Ranking>12</Ranking>
+		</Compet>
+		<Compet cat="A">
+			<Title> African Championships in Athletics</Title>
+			<Player>Moses Ndiema Kipsiro</Player>
+			<Trophy>1</Trophy>
+			<Ranking>110</Ranking>
+		</Compet>
+		<Discipline categorie="F">
+			<Titre>champions league</Titre>
+			<Sportif>Lionel Messi</Sportif>
+			<Trophet>4</Trophet>
+			<Classement>1</Classement>
+		</Discipline>
+		<Compet cat="J">
+			<Title>Jeux de force</Title>
+			<Player>Stephen Badme</Player>
+			<Organizer>Slovenia</Organizer>
+			<Trophy>1</Trophy>
+			<Ranking>112</Ranking>
+		</Compet>
+		<Compet cat="G">
+			<Title> Aerobic gymnastics</Title>
+			<Player>Marcela Lopez, Angela McMillan,Huang Jinxuan, Giulia Bianchi </Player>
+			<Organizer> Kaohsiung</Organizer>
+			<Trophy>1</Trophy>
+			<Ranking>20</Ranking>
+		</Compet>
+	</Sport>
+	<Categories desc="Miscellaneous categories">
+    A list of categories
+      	<Category code="D" desc="Danse"/>
+		<Category code="G" desc="Gymnastics"/>
+		<Category code="J" desc="Junior"/>
+		<Category code="F" desc="Final"/>
+		<Category code="I" desc="Individual" note="champions select"/>
+		<Category code="A" desc="Athletics"/>
+	</Categories>
+</Sports>

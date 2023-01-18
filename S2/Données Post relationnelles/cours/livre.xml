@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Livre titre="Le livre de la jungle">
+<auteur nom="Kedadi" prenom="Farouk">
+
+</auteur>
+<edition></edition>
+
+<section titre="section1">
+	<chapitre titre="chapitre1">
+		<paragraphes>
+			<paragraphe>il était une fois</paragraphe>
+			<paragraphe>il était une autre fois</paragraphe>
+		</paragraphes>
+	</chapitre>
+</section>
+ 
+</Livre>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<stock>
+<!--test-->
+  <produit>
+    <nom xmlns='http://www.dil.univ-mrs.fr'> Découvrir XML </nom>
+    <prix monnaie="Euros"> 50 </prix>
+  </produit>
+  <produit>
+  <nom> CD </nom>
+ </produit>
+</stock>

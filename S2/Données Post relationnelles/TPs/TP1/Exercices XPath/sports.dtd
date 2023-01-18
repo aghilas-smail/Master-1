@@ -1,0 +1,31 @@
+
+<!ENTITY  % comp " (Player | Trophy | Organizer | Ranking | Title )*" > 
+
+
+<!ELEMENT Sport (Discipline|Compet )*>
+
+<!ELEMENT Discipline (Titre, Sportif*, Trophet, Classement)>
+<!ELEMENT Compet  %comp;>
+
+<!ELEMENT Player ( #PCDATA ) >
+<!ELEMENT Sports ( Sport, Categories ) >
+<!ELEMENT Ranking ( #PCDATA ) >
+<!ELEMENT Title ( #PCDATA ) >
+<!ELEMENT Sportif ( #PCDATA )>
+<!ELEMENT Trophet ( #PCDATA )>
+<!ELEMENT Classement ( #PCDATA )>
+<!ELEMENT Titre ( #PCDATA ) >
+<!ELEMENT Trophy ( #PCDATA ) >
+<!ELEMENT Organizer ( #PCDATA ) >
+<!ELEMENT Category EMPTY >
+<!ELEMENT Categories (#PCDATA|Category )*>
+
+<!ATTLIST Categories desc CDATA #REQUIRED > 
+<!ATTLIST Category note CDATA #IMPLIED
+		code ID  #REQUIRED
+		desc CDATA #REQUIRED >
+<!ATTLIST Organizer year CDATA #IMPLIED>
+<!ATTLIST Discipline categorie  IDREF  #REQUIRED
+			nbre CDATA #IMPLIED
+>
+<!ATTLIST Compet cat  IDREF  #REQUIRED>
