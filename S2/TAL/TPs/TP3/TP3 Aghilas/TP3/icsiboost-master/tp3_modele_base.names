@@ -1,0 +1,5 @@
+adj , adv , advneg , cln , clo , clr , coo , csu , det , nc , np , poncts , ponctw , pref , prep , pres , pri , pro , prorel , v .
+id : continuous.
+mot_avant: text.
+cible: text.
+mot_apres: text.
