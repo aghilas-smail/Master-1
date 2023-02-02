@@ -1,0 +1,2 @@
+# ignore all files with a .log extension
+*.xpr
