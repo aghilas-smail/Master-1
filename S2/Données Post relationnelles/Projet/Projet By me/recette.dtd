@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <!ELEMENT Recettes (recette | auteur)* >
-<!ELEMENT recette (titre | resume | photo | date-publication | difficulte | ingredient | nb-personne | temps-preparation | temps-cuisson | temps-repos | description | note)*>
+<!ELEMENT recette (titre | resume | photo | date-publication | difficulte | ingredient | nb-personnes | temps-preparation | temps-cuisson | temps-repos | description | note)*>
 <!ATTLIST recette id ID #IMPLIED>
 <!ELEMENT titre (#PCDATA) >
 <!ELEMENT resume (#PCDATA) >
@@ -23,12 +23,13 @@
 <!ELEMENT biographie (#PCDATA)>
 <!ATTLIST ref-recette ref IDREF #REQUIRED)>
 <!ATTLIST auteur id ID #IMPLIED>
-<!ATTLIST ingredient refprod IDREF #REQUIRED>
-<!ELEMENT ingredient (nom | apport-nutritif | apport-energetique | saison | description) >
+<!ATTLIST ingredient refprod IDREF #IMPLIED>
+<!ELEMENT ingredient (nom | apport-nutritif | apport-energetique | saison | description)* >
 <!ELEMENT apport-nutritif (#PCDATA)>
 <!ELEMENT apport-energetique (#PCDATA)>
 <!ELEMENT saison (#PCDATA)>
 <!ELEMENT categorie (nom | description | sous-categorie* )>
 <!ELEMENT sous-categorie (nom | description | ref-recette*)>
 <!ELEMENT produit (EMPTY)>
-<!ATTLIST nom produit ID #REQUIRED>
+<!ATTLIST produit nom  ID #REQUIRED>
+<!ELEMENT nb-personnes (#PCDATA)>
