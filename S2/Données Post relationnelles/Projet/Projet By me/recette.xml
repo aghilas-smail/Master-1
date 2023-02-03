@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Recettes>
+    <!-- Premier recette En (Figure)-->
     <recette id = "r1">
         <titre> Figure Roties au chevre et au thym</titre>
         <resume> Vive l'automne, et surtout la saison des figues ! la cueillette a lieu de juillet a octobre, alors on en profite avec  des recettes sucrées, mais aussi salées ! Vous avez déjà essayé ? Cette version allie la fraîcheur du fruit et l’onctuosité du fromage, pour un plat très réconfortant avec de l’huile d’olive et du thym qui plaira à toute la famille ! </resume>
@@ -11,7 +12,10 @@
             <saison> fin juin a novembre</saison>
             <description> 4 belles figures violettes bien mures .</description>
         </ingredient>
-    <recette id="r5">
+
+
+        <!-- Deuxieme recette (Chocolat-->
+    <recette id="r2">
         <titre>Chocolat chaud à la chicorée et chamallow</titre>
         <resume>Envie d’un chocolat chaud réconfortant avec un bon goût de chicorée, une bonne dose de chantilly et des chamallows moelleux ? Testez cette délicieuse recette express à déguster sous un plaid chaud devant votre série préférée</resume>
         <date-publication>18 novembre 2022</date-publication>
@@ -49,8 +53,12 @@
             4. Versez dans la tasse, recouvrez de chantilly et agrémentez de guimauves.
         </description>
     </recette>
+
+
+
         <!-- s cat : Smoothie -->
-        <recette id="6">
+
+        <recette id="r3">
             <titre>Smoothie vert chou kale avocat pamplemousse</titre>
             <resume>Pour faire le plein de vitamines, voici une recette minceur et détox de smoothie vert banane chou kale (ou épinard /mache), idéale pour le petit déjeuner. A déguster toute l’année, car une cure détox de quelques jours ne sert à rien !</resume>
             <date-publication>13 novembre 2020</date-publication>
@@ -89,9 +97,32 @@
         </recette>
         <!-- cat desserts , sc Tartes sucrées  -->
     </recette>
-    <auteur>
-        <nom> Interfel </nom>
+
+    <!-- 3 eme auteur-->
+    <auteur id = "tombini">
+        <nom> Vanessa </nom>
         <pays>france</pays>
-        <ref-recette ref = "r7">  </ref-recette>
+        <sexe> femme </sexe>
+        <biographie>Des recette saines, tandances bio, découvrez les merveilles de Vanessa </biographie>
+        <ref-recette ref = "r1">  </ref-recette>
     </auteur>
+
+    <!-- 2 eme auteur-->
+        <auteur id  ="jesaispastrop">
+        <pays> France</pays>
+        <sex> Homme</sex>
+        <biographie> Rien de spéciel en vrai de vrai et merci</biographie>
+        <ref-recette ref = "r2"></ref-recette>
+    </auteur>
+
+    <!-- 3 eme auteur-->
+    <auteur id ="rien">
+        <nom> aghilas</nom>
+        <sexe> Homme</sexe>
+        <pays> france</pays>
+        <biographie> je sais pas trop pour l'instant.</biographie>
+        <ref-recette ref = "r3" ></ref-recette>
+    </auteur>
+
+
 </Recettes>
