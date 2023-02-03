@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<!ELEMENT Recettes (recette | auteur)* >
+<!ELEMENT recette (titre | resume | photo | date-publication | difficulte | ingredient | nb-personne | temps-preparation | temps-cuisson | temps-repos | description | note)*>
+<!ATTLIST recette id ID #IMPLIED>
+<!ELEMENT titre (#PCDATA) >
+<!ELEMENT resume (#PCDATA) >
+<!ELEMENT photo EMPTY >
+<!ELEMENT date-publication (#PCDATA) >
+<!ELEMENT difficulte (#PCDATA)>
+<!ELEMENT ingredient (#PCDATA)>
+<!ELEMENT nb-personne (#PCDATA)>
+<!ELEMENT temps-cuisson (#PCDATA)>
+<!ELEMENT temps-preparation (#PCDATA)>
+<!ELEMENT temps-repos (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT note (#PCDATA)>
+<!ELEMENT auteur (nom | age | pays | sexe | biographie | ref-recette)* >
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT pays (#PCDATA)>
+<!ELEMENT sexe (#PCDATA)>
+<!ELEMENT biographie (#PCDATA)>
+<!ELEMENT ref-recette (#PCDATA)>
+<!ATTLIST auteur id ID #IMPLIED>
+<!ATTLIST ingredient refprod IDREF #REQUIRED>
+
