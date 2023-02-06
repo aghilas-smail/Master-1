@@ -1,0 +1,147 @@
+2- 
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ icsiboost-master/src
+/icsiboost -o -S class_en_v1 -n 100 | tee class_en_v1.iter
+
+gnuplot 
+plot 'class_en_v1.iter' using 2:12 with lines title 'training error', '' using 2:10 with lines title 'test error', '' using 2:8 with lines title 'dev error'
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat class_en_v1.test | icsiboost-master/src/icsiboost -S class_en_v1 -C -o=
+EXAMPLE ERROR RATE (>0): 0.056345 (1082/19203)
+  O: r=0.991873 p=0.981679 f=0.986750 (tp=17575, fp=328, pp=17719)
+  B-person: r=0.666667 p=0.779221 f=0.718563 (tp=180, fp=51, pp=270)
+  I-person: r=0.893048 p=0.732456 f=0.804819 (tp=167, fp=61, pp=187)
+  B-geoloc: r=0.341920 p=0.776596 f=0.474797 (tp=146, fp=42, pp=427)
+  I-geoloc: r=0.000000 p=0.000000 f=nan (tp=0, fp=5, pp=92)
+  B-org: r=0.239837 p=0.614583 f=0.345029 (tp=59, fp=37, pp=246)
+  I-org: r=0.032407 p=0.538462 f=0.061135 (tp=7, fp=6, pp=216)
+  B-product: r=0.000000 p=0.000000 f=nan (tp=0, fp=1, pp=18)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=28)
+EXAMPLE ERROR RATE (argmax): 0.043170 (829/19203)
+  O: r=0.993792 p=0.977680 f=0.985670 (tp=17609, fp=402, pp=17719)
+  B-person: r=0.718519 p=0.687943 f=0.702899 (tp=194, fp=88, pp=270)
+  I-person: r=0.957219 p=0.730612 f=0.828704 (tp=179, fp=66, pp=187)
+  B-geoloc: r=0.615925 p=0.652605 f=0.633735 (tp=263, fp=140, pp=427)
+  I-geoloc: r=0.032609 p=0.250000 f=0.057692 (tp=3, fp=9, pp=92)
+  B-org: r=0.451220 p=0.493333 f=0.471338 (tp=111, fp=114, pp=246)
+  I-org: r=0.069444 p=0.600000 f=0.124481 (tp=15, fp=10, pp=216)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=18)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=28)
+
+3-
+cat corpus.txt | grep -v ',O.' > corpus_v2.txt
+
+icsiboost-master/src/icsiboost -o -S class_en_v2 -n 100 | tee class_en_v2.iter
+
+gnuplot
+plot 'class_en_v2.iter' using 2:12 with lines title 'training error', '' using 2:10 with lines title 'test error', '' using 2:8 with lines title 'dev rror'
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat class_en_v2.test | icsiboost-master/src/icsiboost -S class_en_v2 -C -o
+EXAMPLE ERROR RATE (>0): 0.440565 (593/1346)
+  O: r=nan p=nan f=nan (tp=0, fp=0, pp=0)
+  B-person: r=0.748971 p=0.771186 f=0.759916 (tp=182, fp=54, pp=243)
+  I-person: r=0.970760 p=0.751131 f=0.846939 (tp=166, fp=55, pp=171)
+  B-geoloc: r=0.532663 p=0.806084 f=0.641452 (tp=212, fp=51, pp=398)
+  I-geoloc: r=0.166667 p=0.500000 f=0.250000 (tp=14, fp=14, pp=84)
+  B-org: r=0.435185 p=0.734375 f=0.546512 (tp=94, fp=34, pp=216)
+  I-org: r=0.492147 p=0.824561 f=0.616393 (tp=94, fp=20, pp=191)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=15)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=28)
+EXAMPLE ERROR RATE (argmax): 0.297920 (401/1346)
+  O: r=nan p=nan f=nan (tp=0, fp=0, pp=0)
+  B-person: r=0.839506 p=0.710801 f=0.769811 (tp=204, fp=83, pp=243)
+  I-person: r=0.970760 p=0.731278 f=0.834171 (tp=166, fp=61, pp=171)
+  B-geoloc: r=0.706030 p=0.743386 f=0.724227 (tp=281, fp=97, pp=398)
+  I-geoloc: r=0.202381 p=0.447368 f=0.278689 (tp=17, fp=21, pp=84)
+  B-org: r=0.643519 p=0.668269 f=0.655660 (tp=139, fp=69, pp=216)
+  I-org: r=0.722513 p=0.666667 f=0.693467 (tp=138, fp=69, pp=191)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=15)
+  I-product: r=0.000000 p=0.000000 f=nan (tp=0, fp=1, pp=28)
+  
+7-
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat corpus_en_200k.train.txt | python3 extrait_entite_nomme.py | sort | cut -f2,3 | sort -s -t$'\t' -k1,1 | python3 entite_nomme_freq.py | sort -t$'\t' -k2,2 -r -n | python3 delete_last_col.py > patrons.txt
+
+-----------les 10 premiers patrons----------------------------------------------
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat patrons.txt | head -n 10 > patron10.txt
+
+cat corpus_en_200k.train.txt | python3 marque_patron.py patron10.txt | python3 transform_v3.py > corpus_v3.txt
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat corpus_v3.txt | head -n 40888 > class_en_v3.data
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat corpus_v3.txt | tail -n 5841 > class_en_v3.test
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat corpus_v3.txt | tail -n 17524 | head -n 11683 > class_en_v3.dev
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ icsiboost-master/src/icsiboost -S class_en_v3 -n 100 | tee class_en_v3.iter
+
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat class_en_v3.test | icsiboost-master/src/icsiboost -S class_en_v3 -C -o
+EXAMPLE ERROR RATE (>0): 0.152029 (888/5841)
+  O: r=0.968633 p=0.957502 f=0.963036 (tp=4416, fp=196, pp=4559)
+  B-person: r=0.670732 p=0.804878 f=0.731707 (tp=165, fp=40, pp=246)
+  I-person: r=0.918605 p=0.741784 f=0.820779 (tp=158, fp=55, pp=172)
+  B-geoloc: r=0.413534 p=0.756881 f=0.534846 (tp=165, fp=53, pp=399)
+  I-geoloc: r=0.042254 p=0.428571 f=0.076923 (tp=3, fp=4, pp=71)
+  B-org: r=0.216590 p=0.618421 f=0.320819 (tp=47, fp=29, pp=217)
+  I-org: r=0.047297 p=0.466667 f=0.085890 (tp=7, fp=8, pp=148)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=12)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=17)
+EXAMPLE ERROR RATE (argmax): 0.115049 (672/5841)
+  O: r=0.972582 p=0.946425 f=0.959325 (tp=4434, fp=251, pp=4559)
+  B-person: r=0.792683 p=0.645695 f=0.711679 (tp=195, fp=107, pp=246)
+  I-person: r=0.988372 p=0.735931 f=0.843672 (tp=170, fp=61, pp=172)
+  B-geoloc: r=0.619048 p=0.625316 f=0.622166 (tp=247, fp=148, pp=399)
+  I-geoloc: r=0.084507 p=0.545455 f=0.146341 (tp=6, fp=5, pp=71)
+  B-org: r=0.451613 p=0.535519 f=0.490000 (tp=98, fp=85, pp=217)
+  I-org: r=0.128378 p=0.558824 f=0.208791 (tp=19, fp=15, pp=148)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=12)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=17)
+
+--------------------------------------------------------------------------------
+-----------les 5 premiers patrons-----------------------------------------------
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat class_en_v4.test | icsiboost-master/src/icsiboost -S class_en_v4 -C -o
+EXAMPLE ERROR RATE (>0): 0.173554 (840/4840)
+  O: r=0.957648 p=0.965449 f=0.961533 (tp=3437, fp=123, pp=3589)
+  B-person: r=0.667969 p=0.810427 f=0.732334 (tp=171, fp=40, pp=256)
+  I-person: r=0.959770 p=0.780374 f=0.860825 (tp=167, fp=47, pp=174)
+  B-geoloc: r=0.399027 p=0.780952 f=0.528180 (tp=164, fp=46, pp=411)
+  I-geoloc: r=0.018519 p=0.250000 f=0.034483 (tp=1, fp=3, pp=54)
+  B-org: r=0.261261 p=0.690476 f=0.379085 (tp=58, fp=26, pp=222)
+  I-org: r=0.075472 p=0.533333 f=0.132231 (tp=8, fp=7, pp=106)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=13)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=15)
+EXAMPLE ERROR RATE (argmax): 0.126240 (611/4840)
+  O: r=0.966565 p=0.944974 f=0.955647 (tp=3469, fp=202, pp=3589)
+  B-person: r=0.804688 p=0.682119 f=0.738351 (tp=206, fp=96, pp=256)
+  I-person: r=0.977011 p=0.752212 f=0.850000 (tp=170, fp=56, pp=174)
+  B-geoloc: r=0.673966 p=0.633867 f=0.653302 (tp=277, fp=160, pp=411)
+  I-geoloc: r=0.037037 p=0.285714 f=0.065574 (tp=2, fp=5, pp=54)
+  B-org: r=0.436937 p=0.541899 f=0.483791 (tp=97, fp=82, pp=222)
+  I-org: r=0.075472 p=0.444444 f=0.129032 (tp=8, fp=10, pp=106)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=13)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=15)
+
+--------------------------------------------------------------------------------
+-----------les 20 premiers patrons-----------------------------------------------
+m22008412@V-PP-47-092:~/Bureau/S2/TAL/TP5$ cat class_en_v5.test | icsiboost-master/src/icsiboost -S class_en_v5 -C -o
+EXAMPLE ERROR RATE (>0): 0.111843 (968/8655)
+  O: r=0.979975 p=0.965802 f=0.972837 (tp=7145, fp=253, pp=7291)
+  B-person: r=0.653543 p=0.805825 f=0.721739 (tp=166, fp=40, pp=254)
+  I-person: r=0.937853 p=0.737778 f=0.825871 (tp=166, fp=59, pp=177)
+  B-geoloc: r=0.381418 p=0.780000 f=0.512315 (tp=156, fp=44, pp=409)
+  I-geoloc: r=0.012987 p=0.200000 f=0.024390 (tp=1, fp=4, pp=77)
+  B-org: r=0.222222 p=0.666667 f=0.333333 (tp=50, fp=25, pp=225)
+  I-org: r=0.054945 p=0.526316 f=0.099502 (tp=10, fp=9, pp=182)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=15)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=25)
+EXAMPLE ERROR RATE (argmax): 0.086308 (747/8655)
+  O: r=0.985873 p=0.952179 f=0.968733 (tp=7188, fp=361, pp=7291)
+  B-person: r=0.759843 p=0.663230 f=0.708257 (tp=193, fp=98, pp=254)
+  I-person: r=0.977401 p=0.736170 f=0.839806 (tp=173, fp=62, pp=177)
+  B-geoloc: r=0.594132 p=0.644562 f=0.618321 (tp=243, fp=134, pp=409)
+  I-geoloc: r=0.051948 p=0.444444 f=0.093023 (tp=4, fp=5, pp=77)
+  B-org: r=0.386667 p=0.530488 f=0.447301 (tp=87, fp=77, pp=225)
+  I-org: r=0.109890 p=0.666667 f=0.188679 (tp=20, fp=10, pp=182)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=15)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=25)
+

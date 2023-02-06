@@ -1,0 +1,272 @@
+np
+np np
+np np np
+nc
+np prep np
+np adj
+nc prep np
+nc np
+nc adj
+det np
+nc prep nc
+ponctw np
+np nc
+ponctw
+np prep nc
+nc adj adj
+det np prep det np
+adj nc
+np adj prep nc
+np ponctw np
+np adj prep det nc
+np np prep np
+np det np
+nc prep nc prep np
+nc prep det np
+nc prep
+det nc prep nc
+adj
+np prep det np
+np np np np
+nc adj prep np
+np prep nc prep det np
+np ponctw nc ponctw
+np adj prep nc prep det nc
+nc ponctw
+nc np np
+nc adj prep nc
+adj adj prep nc
+ponctw np np
+np adj prep np
+nc np np prep np
+np v
+np adj adj
+nc prep nc prep det nc
+nc prep nc adj
+nc prep det nc
+adj adj
+prep np
+np prep det nc
+np np np np np
+np nc nc
+np coo det nc
+np adj adj np np np
+nc np prep
+nc det adj nc nc det det adj det adj adj adj adj
+det np prep det nc
+det np np
+det nc prep det nc
+v
+np prep np np
+np prep np adj
+np prep nc adj prep np
+np prep nc adj
+np prep
+np ponctw ponctw
+np np adj
+np nc ponctw
+np coo np
+np adv
+np adj nc adj
+nc v
+nc prep nc prep
+nc nc adj
+nc nc
+nc det det nc adj adj adj nc
+nc adj prep nc prep det nc
+nc adj prep det nc
+det nc prep nc adj
+v ponctw
+ponctw ponctw np np np ponctw
+ponctw np ponctw nc ponctw
+np prep det nc adj
+np ponctw np ponctw ponctw
+np ponctw np ponctw np np
+np np ponctw np
+np np nc
+np clo v v
+np cln np
+np adj prep nc prep np prep det np
+np adj prep nc prep nc
+np adj prep nc adj
+np adj prep det nc adj
+np adj coo det
+nc prep v
+nc prep nc adj prep np
+nc prep adj np
+nc np prep np
+nc nc ponctw
+nc adj prep nc nc
+nc adj prep nc adj
+nc adj prep det nc coo det nc
+nc adj prep
+nc adj nc det nc nc nc det nc det adj
+det ponctw pro
+det nc prep nc adj det nc prep det pro
+det nc det nc
+det nc adj
+det det nc
+adv
+adj nc nc
+adj det nc
+v prep v adj
+v prep nc
+v nc
+v adj
+pro ponctw pro
+prep ponctw nc ponctw
+prep np prep nc adj
+prep nc adj nc
+prep nc
+prep
+ponctw np prep np
+ponctw np ponctw v ponctw ponctw v
+ponctw np ponctw ponctw ponctw v ponctw
+ponctw np ponctw ponctw ponctw v
+ponctw np ponctw ponctw
+ponctw np ponctw np
+ponctw np ponctw nc ponctw ponctw ponctw
+ponctw np ponctw adj ponctw
+ponctw nc ponctw ponctw np ponctw ponctw
+ponctw nc adj
+ponctw det nc ponctw nc ponctw
+np pro
+np prep v
+np prep prep np
+np prep np ponctw np
+np prep np np prep np
+np prep nc prep nc adj
+np prep nc nc prep nc adj
+np prep nc adj prep
+np prep nc adj adj adj nc adj nc adj nc nc det np np adj
+np prep nc adj adj
+np prep adj pro prorel v det nc
+np ponctw v v prep nc prep det
+np ponctw v ponctw
+np ponctw prep np
+np ponctw prep nc prep nc ponctw v adv nc adj prep v adj det nc prep det nc adj prep det nc prep nc prep nc prorel v adv prep nc adj ponctw
+np ponctw ponctw v
+np ponctw ponctw ponctw v ponctw
+np ponctw ponctw np
+np ponctw np np np
+np ponctw np np
+np ponctw nc adj
+np ponctw
+np poncts
+np np prep np np
+np np prep nc
+np np ponctw np ponctw
+np np ponctw nc ponctw
+np np ponctw adj ponctw adj
+np np ponctw adj ponctw
+np np np np np prep np
+np np coo np
+np np cln
+np nc prep np
+np nc np ponctw np
+np nc adj
+np det nc
+np coo nc
+np coo det nc nc
+np cln v pro
+np cln v cln
+np adj v
+np adj prep prep nc prep det nc
+np adj prep nc prep nc coo prep adj
+np adj prep nc coo prep nc
+np adj prep nc coo nc
+np adj prep nc adj prep np
+np adj prep
+np adj np np np
+np adj np
+np adj adj prep nc adj
+np adj adj prep nc
+nc prep ponctw np ponctw prep np np ponctw
+nc prep np prep
+nc prep np np np
+nc prep np np
+nc prep nc v
+nc prep nc prep prep
+nc prep nc prep det ponctw np
+nc prep nc prep det nc coo ponctw prep adj
+nc prep nc prep det nc adj
+nc prep nc prep det
+nc prep nc np
+nc prep nc coo nc
+nc prep nc adj prep nc
+nc prep det nc prep det
+nc prep det nc np prep
+nc ponctw ponctw
+nc ponctw nc ponctw
+nc np v prep det np
+nc np prep det nc
+nc np np prep nc prep det np
+nc np np np
+nc np coo nc prep nc
+nc np adj
+nc nc prep v
+nc nc nc
+nc nc adj nc
+nc det det nc nc det adj det adj
+nc det det adj adj det det np
+nc det
+nc coo adj prep nc adj coo adj
+nc adj prep nc prep
+nc adj prep nc coo prep nc adj
+nc adj prep nc coo det nc adj
+nc adj prep nc adj prep np
+nc adj prep det ponctw nc
+nc adj prep det nc prep nc prep det np prep
+nc adj prep det nc prep det nc
+nc adj det nc np np
+nc adj det nc nc det adj det nc
+nc adj adj prep nc prep nc coo prep nc
+nc adj adj adj
+det v
+det ponctw nc np
+det ponctw adj prep np
+det np prep np
+det np prep nc
+det np ponctw np np ponctw nc adj nc adj nc det det adj nc adj nc adj nc adj det nc np
+det np np prep np
+det np np np
+det np adj
+det nc v
+det nc prep np prep np coo prep np prep np
+det nc prep np ponctw ponctw np np
+det nc prep np np
+det nc prep np
+det nc prep nc prep nc coo prep nc prep nc
+det nc prep nc ponctw
+det nc prep det nc prep
+det nc prep adj
+det nc np ponctw det det nc det np
+det nc np np np
+det nc np det nc nc det np
+det nc np det nc nc adj pro
+det nc nc prep
+det nc adv adj
+det nc
+det det nc prep np
+det det det det adj adj det det np
+det advneg adv
+det adj prep nc prep nc prep det np prep
+det adj nc adj
+det adj nc
+det adj det det adj adj det det np
+det adj det
+cln np np np
+adv v
+adv prep np
+adv adj
+adj v
+adj prep np
+adj prep nc prep nc prep det np prep np
+adj prep nc prep nc prep det np
+adj prep nc
+adj ponctw adj adj
+adj np
+adj nc nc det det adj det adj adj adj adj
+adj det nc adj
+adj adv
+adj adj nc
