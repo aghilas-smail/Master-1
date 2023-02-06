@@ -1,0 +1,10 @@
+np
+np np
+np np np
+nc
+np prep np
+np adj
+nc prep np
+nc np
+nc adj
+det np

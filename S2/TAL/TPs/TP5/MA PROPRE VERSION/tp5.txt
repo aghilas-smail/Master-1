@@ -1,0 +1,97 @@
+2-
+- fichier .iter
+
+aghilas@aghilas:~/Bureau/Master-1/S2/TAL/TPs/TP5/MA PROPRE VERSION$ icsiboost-master/src/icsiboost -o -S class_en_v1 -n 100 | tee class_en_v1.iter > class_en_v1.trace 
+class_en_v1.data: 192031
+class_en_v1.dev: 38407
+class_en_v1.test: 192031
+
+- exemple d'erreur :
+
+aghilas@aghilas:~/Bureau/Master-1/S2/TAL/TPs/TP5/MA PROPRE VERSION$ cat class_en_v1.test | ./icsiboost-master/src/icsiboost -S class_en_v1 -C -o > class_en_v1.trace
+EXAMPLE ERROR RATE (>0): 0.050523 (9702/192031)
+  O: r=0.992120 p=0.984556 f=0.988323 (tp=176774, fp=2773, pp=178178)
+  B-person: r=0.638041 p=0.788251 f=0.705236 (tp=1798, fp=483, pp=2818)
+  I-person: r=0.866882 p=0.772261 f=0.816840 (tp=1882, fp=555, pp=2171)
+  B-geoloc: r=0.448244 p=0.802002 f=0.575075 (tp=1442, fp=356, pp=3217)
+  I-geoloc: r=0.022876 p=0.567568 f=0.043979 (tp=21, fp=16, pp=918)
+  B-org: r=0.194086 p=0.672439 f=0.301228 (tp=466, fp=227, pp=2401)
+  I-org: r=0.083851 p=0.803571 f=0.151856 (tp=135, fp=33, pp=1610)
+  B-product: r=0.089552 p=0.888889 f=0.162712 (tp=24, fp=3, pp=268)
+  I-product: r=0.028889 p=0.812500 f=0.055794 (tp=13, fp=3, pp=450)
+EXAMPLE ERROR RATE (argmax): 0.037864 (7271/192031)
+  O: r=0.994090 p=0.980737 f=0.987368 (tp=177125, fp=3479, pp=178178)
+  B-person: r=0.720369 p=0.721393 f=0.720881 (tp=2030, fp=784, pp=2818)
+  I-person: r=0.935053 p=0.771863 f=0.845657 (tp=2030, fp=600, pp=2171)
+  B-geoloc: r=0.719304 p=0.619545 f=0.665708 (tp=2314, fp=1421, pp=3217)
+  I-geoloc: r=0.044662 p=0.436170 f=0.081028 (tp=41, fp=53, pp=918)
+  B-org: r=0.407747 p=0.536145 f=0.463213 (tp=979, fp=847, pp=2401)
+  I-org: r=0.124224 p=0.706714 f=0.211305 (tp=200, fp=83, pp=1610)
+  B-product: r=0.100746 p=0.931034 f=0.181818 (tp=27, fp=2, pp=268)
+  I-product: r=0.031111 p=0.875000 f=0.060086 (tp=14, fp=2, pp=450)
+
+  3-
+
+  cat corpus.txt | grep -v ',O.' > corpus_Sans_O.txt
+
+  aghilas@aghilas:~/Bureau/Master-1/S2/TAL/TPs/TP5/MA PROPRE VERSION$ icsiboost-master/src/icsiboost -o -S class_en_v2 -n 100 | tee class_en_v2.iter > class_en_v2.trace
+class_en_v2.data: 9425
+class_en_v2.dev: 2694
+class_en_v2.test: 1346
+
+erreur:
+
+EXAMPLE ERROR RATE (>0): 0.440565 (593/1346)
+  O: r=nan p=nan f=nan (tp=0, fp=0, pp=0)
+  B-person: r=0.748971 p=0.771186 f=0.759916 (tp=182, fp=54, pp=243)
+  I-person: r=0.970760 p=0.751131 f=0.846939 (tp=166, fp=55, pp=171)
+  B-geoloc: r=0.532663 p=0.806084 f=0.641452 (tp=212, fp=51, pp=398)
+  I-geoloc: r=0.166667 p=0.500000 f=0.250000 (tp=14, fp=14, pp=84)
+  B-org: r=0.435185 p=0.734375 f=0.546512 (tp=94, fp=34, pp=216)
+  I-org: r=0.492147 p=0.824561 f=0.616393 (tp=94, fp=20, pp=191)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=15)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=28)
+EXAMPLE ERROR RATE (argmax): 0.297920 (401/1346)
+  O: r=nan p=nan f=nan (tp=0, fp=0, pp=0)
+  B-person: r=0.839506 p=0.710801 f=0.769811 (tp=204, fp=83, pp=243)
+  I-person: r=0.970760 p=0.731278 f=0.834171 (tp=166, fp=61, pp=171)
+  B-geoloc: r=0.706030 p=0.743386 f=0.724227 (tp=281, fp=97, pp=398)
+  I-geoloc: r=0.202381 p=0.447368 f=0.278689 (tp=17, fp=21, pp=84)
+  B-org: r=0.643519 p=0.668269 f=0.655660 (tp=139, fp=69, pp=216)
+  I-org: r=0.722513 p=0.666667 f=0.693467 (tp=138, fp=69, pp=191)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=15)
+  I-product: r=0.000000 p=0.000000 f=nan (tp=0, fp=1, pp=28)
+
+  7-
+
+  aghilas@aghilas:~/Bureau/Master-1/S2/TAL/TPs/TP5/MA PROPRE VERSION$ cat corpus_en_200k.train.txt | python3 extrait_entite_nomme.py | sort | cut -f2,3 | sort -s -t$'\t' -k1,1 | python3 entite_nomme_freq.py | sort -t$'\t' -k2,2 -r -n | python3 delete_last_col.py > patrons.txt
+
+
+   les 10 premier patron
+
+   cat patrons.txt | head -n 10 > patron10.txt
+
+   aghilas@aghilas:~/Bureau/Master-1/S2/TAL/TPs/TP5/MA PROPRE VERSION$ cat corpus_en_200k.train.txt | python3 marque_patron.py patron10.txt | python3 format_icsiboost_en_v3.py > corpus_v3.txt
+
+EXAMPLE ERROR RATE (>0): 0.152029 (888/5841)
+  O: r=0.968633 p=0.957502 f=0.963036 (tp=4416, fp=196, pp=4559)
+  B-person: r=0.670732 p=0.804878 f=0.731707 (tp=165, fp=40, pp=246)
+  I-person: r=0.918605 p=0.741784 f=0.820779 (tp=158, fp=55, pp=172)
+  B-geoloc: r=0.413534 p=0.756881 f=0.534846 (tp=165, fp=53, pp=399)
+  I-geoloc: r=0.042254 p=0.428571 f=0.076923 (tp=3, fp=4, pp=71)
+  B-org: r=0.216590 p=0.618421 f=0.320819 (tp=47, fp=29, pp=217)
+  I-org: r=0.047297 p=0.466667 f=0.085890 (tp=7, fp=8, pp=148)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=12)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=17)
+EXAMPLE ERROR RATE (argmax): 0.115049 (672/5841)
+  O: r=0.972582 p=0.946425 f=0.959325 (tp=4434, fp=251, pp=4559)
+  B-person: r=0.792683 p=0.645695 f=0.711679 (tp=195, fp=107, pp=246)
+  I-person: r=0.988372 p=0.735931 f=0.843672 (tp=170, fp=61, pp=172)
+  B-geoloc: r=0.619048 p=0.625316 f=0.622166 (tp=247, fp=148, pp=399)
+  I-geoloc: r=0.084507 p=0.545455 f=0.146341 (tp=6, fp=5, pp=71)
+  B-org: r=0.451613 p=0.535519 f=0.490000 (tp=98, fp=85, pp=217)
+  I-org: r=0.128378 p=0.558824 f=0.208791 (tp=19, fp=15, pp=148)
+  B-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=12)
+  I-product: r=0.000000 p=nan f=nan (tp=0, fp=0, pp=17)
+
+  
