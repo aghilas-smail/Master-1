@@ -47,8 +47,8 @@
                     <br/>
                     <h1>Bienvenue sur notre site de recettes de cuisine</h1>
                     <h2>Vous trouverez ici des plats qui combleront vos envies.</h2>
-                    <h3>Réaliser par SMAIL Aghilas</h3>
-                    <h4>All rights reserved</h4>
+                    <h2>Réaliser par SMAIL Aghilas</h2>
+                    <h2>All rights reserved</h2>
                 </body>
             </html>
         </xsl:result-document>
