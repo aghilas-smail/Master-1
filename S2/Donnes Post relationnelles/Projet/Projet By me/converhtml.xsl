@@ -5,8 +5,21 @@
             <html>
                 <head>
                     <title>Recettes</title>
+                    <link rel="stylesheet" href="style.css"/>
+
                 </head>
                 <body>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Acceuil</a></li>
+                            <li><a href="auteurs.html">Auteurs</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="ingredients.html">Ingredients</a></li>
+                            <li><a href="produits.html">Produits</a></li>
+                            <li><a href="recettes.html">Recettes</a></li>
+                        </ul>
+                    </nav>
+                    <br/>
                     <h1>Les recettes</h1>
                     <xsl:call-template name="liste-des-recettes" />
                     <h1>Les fiches des recettes</h1>
@@ -17,12 +30,25 @@
 
         <xsl:result-document href="index.html" format="my-output">
             <html>
-                <xsl:call-template name="header" />
+                <head>
+                    <link rel="stylesheet" href="home.css"/>
+                </head>
                 <body>
-                    <xsl:call-template name="menu" />
-                    <div class="container" style="margin-top: 60px;">
-                        Bienvenue sur le site développé par SMAIL Aghilas, grâce au XML et au XSL pour le projet de Données Post Relationnelles du semestre 2 du Master 1 d'Informatique de Luminy.
-                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Acceuil</a></li>
+                            <li><a href="auteurs.html">Auteurs</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="ingredients.html">Ingredients</a></li>
+                            <li><a href="produits.html">Produits</a></li>
+                            <li><a href="recettes.html">Recettes</a></li>
+                        </ul>
+                    </nav>
+                    <br/>
+                    <h1>Bienvenue sur notre site de recettes de cuisine</h1>
+                    <h2>Vous trouverez ici des plats qui combleront vos envies.</h2>
+                    <h3>Réaliser par SMAIL Aghilas</h3>
+                    <h4>All rights reserved</h4>
                 </body>
             </html>
         </xsl:result-document>
@@ -30,9 +56,22 @@
         <xsl:result-document href="auteurs.html" format="my-output">
             <html>
                 <head>
+                    <link rel="stylesheet" href="style.css"/>
+
                     <title>Auteurs</title>
                 </head>
                 <body>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Acceuil</a></li>
+                            <li><a href="auteurs.html">Auteurs</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="ingredients.html">Ingredients</a></li>
+                            <li><a href="produits.html">Produits</a></li>
+                            <li><a href="recettes.html">Recettes</a></li>
+                        </ul>
+                    </nav>
+                    <br/>
                     <h1>Les auteurs</h1>
                     <xsl:call-template name="liste-des-auteurs" />
                     <h1>Les fiches des auteurs</h1>
@@ -45,8 +84,21 @@
             <html>
                 <head>
                     <title>Ingrédints</title>
+                    <link rel="stylesheet" href="style.css"/>
+
                 </head>
                 <body>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Acceuil</a></li>
+                            <li><a href="auteurs.html">Auteurs</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="ingredients.html">Ingredients</a></li>
+                            <li><a href="produits.html">Produits</a></li>
+                            <li><a href="recettes.html">Recettes</a></li>
+                        </ul>
+                    </nav>
+                    <br/>
                     <h1>Les Ingrédents</h1>
                     <xsl:call-template name="liste-des-ingredients" />
                     <h1>Les fiches des ingrédients</h1>
@@ -59,8 +111,21 @@
             <html>
                 <head>
                     <title>Produits</title>
+                    <link rel="stylesheet" href="style.css"/>
+
                 </head>
                 <body>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Acceuil</a></li>
+                            <li><a href="auteurs.html">Auteurs</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="ingredients.html">Ingredients</a></li>
+                            <li><a href="produits.html">Produits</a></li>
+                            <li><a href="recettes.html">Recettes</a></li>
+                        </ul>
+                    </nav>
+                    <br/>
                     <h1>Les produits</h1>
                     <xsl:call-template name="liste-des-produits" />
                     <h1>Les fiches des produits</h1>
@@ -73,8 +138,21 @@
             <html>
                 <head>
                     <title>Categories</title>
+                    <link rel="stylesheet" href="style.css"/>
+
                 </head>
                 <body>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Acceuil</a></li>
+                            <li><a href="auteurs.html">Auteurs</a></li>
+                            <li><a href="categories.html">Categories</a></li>
+                            <li><a href="ingredients.html">Ingredients</a></li>
+                            <li><a href="produits.html">Produits</a></li>
+                            <li><a href="recettes.html">Recettes</a></li>
+                        </ul>
+                    </nav>
+                    <br/>
                     <h1>Les categories</h1>
                     <xsl:call-template name="liste-des-categories" />
                     <h1>Les fiches des categories</h1>
@@ -95,23 +173,23 @@
                         <xsl:value-of select="photo/@href"/>
                     </xsl:attribute>
                 </img>
-                <p>resumé : <xsl:copy-of select="resume/*"/></p>
-                <p>date de publication : <xsl:value-of select="date-publication/text()"/></p>
-                <p>difficulté : <xsl:value-of select="difficulte/text()"/></p>
-                <p>Les ingrédients :
+                <li><strong>resumé</strong> : <xsl:copy-of select="resume/*"/></li>
+                <li><strong>date de publication</strong> : <xsl:value-of select="date-publication/text()"/></li>
+                <li><strong> </strong> : <xsl:value-of select="difficulte/text()"/></li>
+                <li><strong>Les ingrédients :</strong>
                     <ul>
                         <xsl:for-each select="ref-ingredient">
                             <xsl:variable name="idi" select="@ref"/>
                             <li><xsl:value-of select="@quantite"/> - <a href="ingredients.html#{$idi}"><xsl:value-of select="ancestor::node()//ingredient[@id=$idi]/nom/text()"/></a></li>
                         </xsl:for-each>
                     </ul>
-                </p>
-                <p>temps de préparation : <xsl:value-of select="temps-preparation/text()"/></p>
-                <p>temps de cuisson : <xsl:value-of select="temps-cuisson/text()"/></p>
-                <p>temps de repos : <xsl:value-of select="temps-repos/text()"/></p>
-                <p>pour <xsl:value-of select="nb-personnes/text()"/> personnes</p>
-                <p>description : <xsl:copy-of select="description/*"/></p>
-                <p>note : <xsl:value-of select="note/text()"/></p>
+                </li>
+                <strong>temps de préparation : </strong> <xsl:value-of select="temps-preparation/text()"/>
+                <li><strong>temps de cuisson : </strong> <xsl:value-of select="temps-cuisson/text()"/></li>
+                <li><strong>temps de repos :</strong> <xsl:value-of select="temps-repos/text()"/></li>
+                <li>pour <xsl:value-of select="nb-personnes/text()"/> personnes</li>
+                    <li><strong> description </strong>: <xsl:copy-of select="description/*"/></li>
+                <li><strong> note :</strong> <xsl:value-of select="note/text()"/></li>
                 <p>Par :
                     <ul>
                         <xsl:for-each select="parent::node()/auteur[ref-recette[@ref=$id]]">
@@ -138,26 +216,6 @@
         </ul>
     </xsl:template>
 
-    <xsl:template name="fiches-des-auteurs">
-        <xsl:for-each select="//auteur">
-            <xsl:sort select="nom"/>
-            <xsl:variable name="id" select="@id"/>
-            <div id="{$id}">
-                <h2><xsl:value-of select="nom/text()"/></h2>
-                <p>pays : <xsl:value-of select="pays/text()"/></p>
-                <p>sexe : <xsl:value-of select="sexe/text()"/></p>
-                <p>biographie : <xsl:value-of select="biographie/text()"/></p>
-                <p>Liste des recettes :
-                    <ul>
-                        <xsl:for-each select="ref-recette">
-                            <xsl:variable name="idr" select="@ref"/>
-                            <li><a href="recette.html#{$idr}"><xsl:value-of select="ancestor::node()//recette[@id=$idr]/titre/text()"/></a></li>
-                        </xsl:for-each>
-                    </ul>
-                </p>
-            </div>
-        </xsl:for-each>
-    </xsl:template>
 
     <xsl:template name="liste-des-auteurs">
         <xsl:for-each select="//auteur">
@@ -192,6 +250,27 @@
         <xsl:for-each select="//ingredient">
             <xsl:variable name="id" select="@id"/>
             <li><a href="#{$id}" ><xsl:value-of select="nom/text()"/></a></li>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template name="fiches-des-auteurs">
+        <xsl:for-each select="//auteur">
+            <xsl:sort select="nom"/>
+            <xsl:variable name="id" select="@id"/>
+            <div id="{$id}">
+                <h2><xsl:value-of select="nom/text()"/></h2>
+                <p>pays : <xsl:value-of select="pays/text()"/></p>
+                <p>sexe : <xsl:value-of select="sexe/text()"/></p>
+                <p>biographie : <xsl:value-of select="biographie/text()"/></p>
+                <p>Liste des recettes :
+                    <ul>
+                        <xsl:for-each select="ref-recette">
+                            <xsl:variable name="idr" select="@ref"/>
+                            <li><a href="recette.html#{$idr}"><xsl:value-of select="ancestor::node()//recette[@id=$idr]/titre/text()"/></a></li>
+                        </xsl:for-each>
+                    </ul>
+                </p>
+            </div>
         </xsl:for-each>
     </xsl:template>
 
@@ -254,27 +333,5 @@
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
-    <xsl:template name="header">
-        <head>
-            <link href="style.css" rel="stylesheet" type="text/css" />
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </head>
-    </xsl:template>
-    <xsl:template name="menu">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse">
-                    <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <a class="navbar-brand" href="./index.html">DPR Recettes</a>
-                        <a class="nav-link" href="./Recettes.html">Toutes les recettes</a>
-                        <a class="nav-link" href="./Categories.html">Les catégories</a>
-                        <a class="nav-link" href="./Produits.html">Les produits</a>
-                        <a class="nav-link" href="./Ingredients.html">Les ingrédients</a>
-                        <a class="nav-link" href="./Auteurs.html">Les auteurs</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </xsl:template>
+
 </xsl:stylesheet>

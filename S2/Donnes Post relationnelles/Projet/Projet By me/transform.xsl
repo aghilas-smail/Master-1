@@ -50,35 +50,6 @@
         </xsl:for-each>
     </xsl:template>
 
-    <xsl:template name="liste-des-categories">
-        <xsl:for-each select="//objet[@type = 'catégorie']">
-            <categorie>
-                <xsl:attribute name="id">
-                    <xsl:value-of select="@id"/>
-                </xsl:attribute>
-                <nom><xsl:value-of select="info[@nom='nom']/@value"/></nom>
-                <nom-court><xsl:value-of select="info[@nom='nom-court']/@value"/></nom-court>
-                <description><xsl:copy-of select="info[@nom='descriptif']/*"/></description>
-            </categorie>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xsl:template name="liste-des-sous-categories">
-        <xsl:for-each select="//objet[@type = 'sous-catégorie']">
-            <sous-categorie>
-                <xsl:attribute name="id">
-                    <xsl:value-of select="@id"/>
-                </xsl:attribute>
-                <xsl:attribute name="categorie">
-                    <xsl:value-of select="info[@nom='catégorie']/@value"/>
-                </xsl:attribute>
-                <nom><xsl:value-of select="info[@nom='nom']/@value"/></nom>
-                <nom-court><xsl:value-of select="info[@nom='nom-court']/@value"/></nom-court>
-                <description><xsl:copy-of select="info[@nom='descriptif']/*"/></description>
-            </sous-categorie>
-        </xsl:for-each>
-    </xsl:template>
-
     <xsl:template name="liste-des-ingredients">
         <xsl:for-each select="//objet[@type = 'ingrédient']">
             <ingredient>
@@ -123,6 +94,22 @@
         </xsl:for-each>
     </xsl:template>
 
+    <xsl:template name="liste-des-sous-categories">
+        <xsl:for-each select="//objet[@type = 'sous-catégorie']">
+            <sous-categorie>
+                <xsl:attribute name="id">
+                    <xsl:value-of select="@id"/>
+                </xsl:attribute>
+                <xsl:attribute name="categorie">
+                    <xsl:value-of select="info[@nom='catégorie']/@value"/>
+                </xsl:attribute>
+                <nom><xsl:value-of select="info[@nom='nom']/@value"/></nom>
+                <nom-court><xsl:value-of select="info[@nom='nom-court']/@value"/></nom-court>
+                <description><xsl:copy-of select="info[@nom='descriptif']/*"/></description>
+            </sous-categorie>
+        </xsl:for-each>
+    </xsl:template>
+
     <xsl:template name="liste-des-auteurs">
         <xsl:for-each select="//objet[@type = 'auteur']">
             <auteur>
@@ -146,5 +133,20 @@
             </auteur>
         </xsl:for-each>
     </xsl:template>
+
+    <xsl:template name="liste-des-categories">
+        <xsl:for-each select="//objet[@type = 'catégorie']">
+            <categorie>
+                <xsl:attribute name="id">
+                    <xsl:value-of select="@id"/>
+                </xsl:attribute>
+                <nom><xsl:value-of select="info[@nom='nom']/@value"/></nom>
+                <nom-court><xsl:value-of select="info[@nom='nom-court']/@value"/></nom-court>
+                <description><xsl:copy-of select="info[@nom='descriptif']/*"/></description>
+            </categorie>
+        </xsl:for-each>
+    </xsl:template>
+
+
 
 </xsl:stylesheet>

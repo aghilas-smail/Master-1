@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:500');
+
+body{
+    background: url(./fond-noir-pierre-cuisine-planches-cuisine-ustensiles-cuisine-espace-libre-pour-texte-vue-dessus_187166-30172.avif) no-repeat center fixed;
+    background-size: cover;
+    color: white;
+}
+/*Navbar*/
+nav{
+    width: 100%;
+    position: fixed;
+    top: 5px;
+    text-align:center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    text-align: center;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #ddd;
+    text-decoration: underline;
+}
+
+/*Content home page*/
+h1{
+    text-align: center;
+    top:70px;
+    margin-top: 100px;
+}
+h2{
+    text-align: center;
+}
