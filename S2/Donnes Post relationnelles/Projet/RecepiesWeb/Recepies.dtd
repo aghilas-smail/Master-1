@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Elément racine -->
+<!ELEMENT Recettes (recette | categorie | sous-categorie | produit | ingredient | auteur)* >
+
+<!-- Entité texte -->
+<!ENTITY % texte "(p | strong | br | t )*" > 
+<!ELEMENT p ( #PCDATA | t | br | strong)* >
+<!ELEMENT strong (#PCDATA) >
+<!ELEMENT br EMPTY >
+<!ELEMENT t (#PCDATA) >
+
+<!-- Une entité pour les catégories -->
+<!ENTITY % cate "nom, nom-court?, description" >
+
+<!-- Les recettes -->
+<!ELEMENT recette (titre | resume | photo | date-publication | difficulte | ref-ingredient | nb-personnes | temps-preparation | temps-cuisson | temps-repos | description | note)* >
+<!ATTLIST recette id ID #IMPLIED >
+<!ELEMENT titre (#PCDATA) >
+<!ELEMENT resume %texte; >
+<!ELEMENT date-publication (#PCDATA) >
+<!ELEMENT difficulte (#PCDATA) >
+<!ELEMENT nb-personnes (#PCDATA) >
+<!ELEMENT temps-preparation (#PCDATA) >
+<!ELEMENT temps-cuisson (#PCDATA) >
+<!ELEMENT temps-repos (#PCDATA) >
+<!ELEMENT note (#PCDATA) >
+
+<!-- Elément photo -->
+<!NOTATION jpeg SYSTEM "image/jpeg">
+<!ELEMENT photo EMPTY>
+<!ATTLIST photo href CDATA #IMPLIED>
+
+<!-- Une référence vers la recette -->
+<!ELEMENT ref-recette EMPTY >
+<!ATTLIST ref-recette ref IDREF #REQUIRED >
+
+<!-- Elément ingrédient -->
+<!ELEMENT ingredient (nom  | apport-nutritif | apport-energetique | saison | description | ref-recette)* >
+<!ATTLIST ingredient
+    id ID #REQUIRED
+    refprod IDREF #IMPLIED>
+<!ELEMENT apport-nutritif (#PCDATA)>
+<!ELEMENT apport-energetique (#PCDATA)>
+<!ELEMENT saison (#PCDATA)>
+<!ELEMENT description %texte; >
+
+<!-- Une référence vers l'ingrédient -->
+<!ELEMENT ref-ingredient EMPTY >
+<!ATTLIST ref-ingredient 
+    ref IDREF #REQUIRED
+    quantite CDATA #IMPLIED >
+
+<!-- Elément produit -->
+<!ELEMENT produit (nom, nom-court?, ref-ingredient*) >
+<!ATTLIST produit id ID #REQUIRED>
+<!ELEMENT nom (#PCDATA) >
+<!ELEMENT nom-court (#PCDATA) >
+
+<!-- Elément auteur -->
+<!ELEMENT auteur (nom | age | pays | sexe | biographie | ref-recette)* >
+<!ATTLIST auteur id ID #IMPLIED >
+<!ELEMENT age (#PCDATA) >
+<!ELEMENT pays (#PCDATA) >
+<!ELEMENT sexe (#PCDATA) >
+<!ELEMENT biographie %texte; >
+
+<!-- Elément catégorie -->
+<!ELEMENT categorie (%cate;, ref-sous-categorie*) >
+<!ATTLIST categorie id ID #REQUIRED >
+
+<!-- Une référence vers la catégorie -->
+<!ELEMENT ref-categorie EMPTY >
+<!ATTLIST ref-categorie ref IDREF #REQUIRED >
+
+<!-- Elément sous-catégorie -->
+<!ELEMENT sous-categorie (%cate;?) >
+<!ATTLIST 
+    sous-categorie id ID #REQUIRED
+    categorie IDREF #IMPLIED >
+
+<!-- Une référence vers la sous-catégorie -->
+<!ELEMENT ref-sous-categorie EMPTY >
+<!ATTLIST ref-sous-categorie ref IDREF #REQUIRED >

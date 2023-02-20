@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT p (#PCDATA | p | br | strong | t)*>
+<!ELEMENT t (#PCDATA)>
+<!ELEMENT br EMPTY>
+<!ELEMENT info (#PCDATA | p)*>
+<!ATTLIST info
+	nom CDATA #REQUIRED
+	value CDATA #IMPLIED
+	quantite CDATA #IMPLIED
+>
+<!ELEMENT objet (info*)>
+<!ATTLIST objet
+	id  ID #REQUIRED
+	type NMTOKEN #REQUIRED
+>
+<!ELEMENT objets (objet+)>
+<!ELEMENT strong (#PCDATA)>
