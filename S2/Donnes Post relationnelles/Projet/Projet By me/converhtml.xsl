@@ -15,6 +15,18 @@
             </html>
         </xsl:result-document>
 
+        <xsl:result-document href="index.html" format="my-output">
+            <html>
+                <xsl:call-template name="header" />
+                <body>
+                    <xsl:call-template name="menu" />
+                    <div class="container" style="margin-top: 60px;">
+                        Bienvenue sur le site développé par SMAIL Aghilas, grâce au XML et au XSL pour le projet de Données Post Relationnelles du semestre 2 du Master 1 d'Informatique de Luminy.
+                    </div>
+                </body>
+            </html>
+        </xsl:result-document>
+
         <xsl:result-document href="auteurs.html" format="my-output">
             <html>
                 <head>
@@ -241,5 +253,28 @@
                 <li style="margin-left:20px;"><a href="#{$ids}" ><xsl:value-of select="nom/text()"/></a></li>
             </xsl:for-each>
         </xsl:for-each>
+    </xsl:template>
+    <xsl:template name="header">
+        <head>
+            <link href="style.css" rel="stylesheet" type="text/css" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </head>
+    </xsl:template>
+    <xsl:template name="menu">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <a class="navbar-brand" href="./index.html">DPR Recettes</a>
+                        <a class="nav-link" href="./Recettes.html">Toutes les recettes</a>
+                        <a class="nav-link" href="./Categories.html">Les catégories</a>
+                        <a class="nav-link" href="./Produits.html">Les produits</a>
+                        <a class="nav-link" href="./Ingredients.html">Les ingrédients</a>
+                        <a class="nav-link" href="./Auteurs.html">Les auteurs</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </xsl:template>
 </xsl:stylesheet>
