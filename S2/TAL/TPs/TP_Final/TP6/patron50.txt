@@ -1,0 +1,50 @@
+np
+np np
+np np np
+nc
+np adj
+np prep np
+nc prep nc
+nc prep np
+nc adj
+det np
+nc np
+np np np np
+np prep nc
+np nc
+np adj prep np
+ponctw
+nc prep nc prep np
+ponctw np
+np ponctw np
+det np np
+np adj adj
+nc np np
+nc adj adj
+np det np
+np adj prep nc
+nc prep
+nc prep det nc
+det nc
+nc prep det np
+np prep det np
+np adj prep det nc
+v
+nc adj prep nc adj
+adj
+np ponctw nc ponctw
+nc prep nc prep
+nc adj prep np
+np v
+nc adj prep nc
+det nc prep nc
+adj nc
+np prep det nc
+np adj prep nc prep det nc
+prep np
+nc prep nc adj
+nc nc
+ponctw np np
+np np prep np
+np prep nc adj
+np adj prep det nc adj

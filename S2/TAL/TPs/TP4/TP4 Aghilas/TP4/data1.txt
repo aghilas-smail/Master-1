@@ -1,0 +1,50 @@
+np 	 5255
+np np 	 1986
+np np np 	 159
+nc 	 140
+np prep np 	 114
+np adj 	 104
+nc prep np 	 77
+nc np 	 50
+nc adj 	 48
+det np 	 47
+nc prep nc 	 40
+ponctw np 	 24
+np nc 	 20
+ponctw 	 16
+np prep nc 	 16
+nc adj adj 	 16
+det np prep det np 	 16
+adj nc 	 13
+np adj prep nc 	 12
+np ponctw np 	 11
+np adj prep det nc 	 11
+np np prep np 	 10
+np det np 	 10
+nc prep nc prep np 	 10
+nc prep det np 	 10
+nc prep 	 10
+det nc prep nc 	 10
+adj 	 10
+np prep det np 	 9
+np np np np 	 9
+nc adj prep np 	 9
+np prep nc prep det np 	 8
+np ponctw nc ponctw 	 8
+np adj prep nc prep det nc 	 8
+nc ponctw 	 7
+nc np np 	 7
+nc adj prep nc 	 7
+adj adj prep nc 	 7
+ponctw np np 	 6
+np adj prep np 	 6
+nc np np prep np 	 6
+np v 	 5
+np adj adj 	 5
+nc prep nc prep det nc 	 5
+nc prep nc adj 	 5
+nc prep det nc 	 5
+adj adj 	 5
+prep np 	 4
+np prep det nc 	 4
+np np np np np 	 4

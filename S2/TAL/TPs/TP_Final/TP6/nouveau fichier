@@ -1,0 +1,15 @@
+import sys
+
+dic = {}
+
+file = open(sys.argv[1])
+line = file.readline()
+while line :
+    word = line[:-1].split("\t")
+    if(word[0] not in dic) dic[word[0]] = [0,0,0,0]
+    if (word[1] == "LOC") : dic[word[0]][0] = word[2]
+    elif (word[1] == "ORG") : dic[word[0]][1] = word[2]
+    elif (word[1] == "PERS") : dic[word[0]][2] = word[2]
+    elif (word[1] == "PROD") : dic[word[0]][3] = word[2]
+    line = file.readline()
+print(dic)

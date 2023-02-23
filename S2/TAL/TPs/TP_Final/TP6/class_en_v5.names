@@ -1,0 +1,12 @@
+O , B-person , I-person , B-geoloc , I-geoloc , B-org , I-org , B-product , I-product.
+indice: ignore.
+moins2mot: text.
+moins2pos: text.
+moins1mot: text.
+moins1pos: text.
+mot: text.
+pos: text.
+plus1mot: text.
+plus1pos: text.
+plus2mot: text.
+plus2pos: text.

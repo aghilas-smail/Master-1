@@ -1,0 +1,20 @@
+Vous devrez rendre dans ce TP un petit rapport répondant aux questions suivantes :
+
+1-Quels sont les 20 mots les plus ambigus (par rapport à l'étiquetage en entités nommées) du corpus
+corpus_en_200k.train.txt
+
+2-Quels sont maintenant les 20 entités nommées les plus ambigus du corpus
+corpus_en_200k.train.txt
+
+3-Calculez l'ambiguité moyenne des entités nommées sur le même corpus.
+
+4-Vous allez maintenant calculer l'ambiguité moyenne des entités nommées par rapport au nombre de mot les composant 
+(ambiguité moyenne des entités composées de 1 mot, puis de 2 mots, etc.). Afficher la courbe reliant l'ambiguité moyenne 
+et le nombre de mots
+
+5-Que pouvez vous conclure des résultats précédents sur le problème de l'ambigüité dans l'étiquetage en entités nommées ?
+En utilisant les résultats de l'exercice 5 du TP vous allez maintenant afficher les 50 patrons d'étiquettes morphosyntaxiques 
+les plus fréquents de votre corpus qui peuvent représenter des entités nommées
+
+6-Vous allez maintenant produire la courbe ayant en abscisse ces 50 patrons classés par fréquence et en ordonnée le nombre
+ d'entités nommées correspondant à chaque patron dans le corpus. Que pouvez vous dire sur cette courbe ?
