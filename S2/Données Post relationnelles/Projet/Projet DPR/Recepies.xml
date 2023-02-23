@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Recettes SYSTEM "Recepies.dtd" >
+<Recettes>
+    <recette id="r1">
+        <titre>FIGUES RÔTIES AU CHÈVRE ET AU THYM</titre>
+        <resume>Vive l’Automne, et surtout la saison des figues ! La cueillette a lieu de juillet à octobre, alors on en profite avec des recettes sucrées, mais aussi salées ! Vous avez déjà essayé ? Cette version allie la fraîcheur du fruit et l’onctuosité du fromage, pour un plat très réconfortant avec de l’huile d’olive et du thym qui plaira à toute la famille !</resume>
+        <date-publication>1 octobre 2022</date-publication>
+        <ref-ingredient ref="fi1"/>
+    </recette>
+    <!-- cat boissons , s cat :Boissons sans alcool , s cat : Smoothie -->
+    <recette id="r5">
+        <titre>Chocolat chaud à la chicorée et chamallow</titre>
+        <resume>Envie d’un chocolat chaud réconfortant avec un bon goût de chicorée, une bonne dose de chantilly et des chamallows moelleux ? Testez cette délicieuse recette express à déguster sous un plaid chaud devant votre série préférée</resume>
+        <date-publication>18 novembre 2022</date-publication>
+        <nb-personnes> 1 personne </nb-personnes>
+        <temps-preparation>5 min </temps-preparation>
+        <difficulte>tres facile</difficulte>
+        <description>
+            1. Dans une casserole, délayez la fécule dans le lait à l’aide d’un petit fouet.
+            2. Incorporez le cacao et la Chicorée Liquide puis mélangez.
+            3. Versez le sucre et chauffez à feu doux jusqu’à frémissement.
+            4. Versez dans la tasse, recouvrez de chantilly et agrémentez de guimauves.
+        </description>
+    </recette>
+    <!-- s cat : Smoothie -->
+    <recette id="r6">
+        <titre>Smoothie vert chou kale avocat pamplemousse</titre>
+        <resume>Pour faire le plein de vitamines, voici une recette minceur et détox de smoothie vert banane chou kale (ou épinard /mache), idéale pour le petit déjeuner. A déguster toute l’année, car une cure détox de quelques jours ne sert à rien !</resume>
+        <date-publication>13 novembre 2020</date-publication>
+        <ingredient>
+            <nom>chou kale</nom>
+            <description>120 g de chou kale </description>
+        </ingredient>
+        <ingredient>
+            <nom>avocat</nom>
+            <apport-nutritif> Riche en lipides, protides, minéraux et oligo-éléments (magnésium, potassium, phosphore, fer, cuivre, zinc) et vitamines C</apport-nutritif>
+            <apport-energetique>138 kcal/100g</apport-energetique>
+            <saison>Toute l’année sur nos étals</saison>
+            <description>1 avocat </description>
+        </ingredient>
+        <ingredient>
+            <nom>Pamplemousse</nom>
+            <apport-nutritif>  vitamine C et flavonoïdes</apport-nutritif>
+            <apport-energetique>42 kcal / 100 g</apport-energetique>
+            <saison>novembre à avril</saison>
+            <description>20 cl de jus de pamplemousse </description>
+        </ingredient>
+        <ingredient>
+            <nom>eau</nom>
+            <description>120 g d’eau</description>
+        </ingredient>
+        <nb-personnes> 2-3 personne </nb-personnes>
+        <temps-preparation>5 min </temps-preparation>
+        <difficulte>tres facile</difficulte>
+        <description>
+            1. Lavez les feuilles de chou kale.
+            2. Coupez et dénoyautez l’avocat. Épluchez-le.
+            3. Pressez le jus du pamplemousse.
+            4. Dans un mixeur, mettez les feuilles de chou, l’avocat coupé en morceaux et le jus de pamplemousse avec l’eau.
+            Mixez jusqu’à obtenir une consistance lisse
+        </description>
+    </recette>
+    <!-- cat desserts , sc Tartes sucrées  -->
+    <recette id="r7">
+        <titre>Tartes fines aux poires et au thym</titre>
+        <resume>
+            De délicieuses tartes fines aux poires et au thym, très simples à réaliser, pour un dessert gourmand qui régalera</resume>
+        <date-publication>30 septembre 2018</date-publication>
+        <ingredient>
+            <nom>poire</nom>
+            <apport-nutritif>  vitamine C et flavonoïdes</apport-nutritif>
+            <apport-energetique>50 Kcal pour 100 g</apport-energetique>
+            <saison>novembre à avril</saison>
+            <description>120 g de chou kale </description>
+        </ingredient>
+        <ingredient>
+            <nom>Citron jaune</nom>
+            <apport-nutritif>vitamines C et PP, potassium, calcium</apport-nutritif>
+            <apport-energetique> 20 Kcal pour 100 g</apport-energetique>
+            <saison>janvier à mars</saison>
+            <description> Le jus d'1 citron jaune </description>
+        </ingredient>
+        <ingredient>
+            <nom> noisettes ou amandes </nom>
+            <description> 4 c. à s. rases de poudre d'amandes ou de noisettes</description>
+        </ingredient>
+        <ingredient>
+            <nom>miel</nom>
+            <description> 4 c. à c. de miel liquide</description>
+        </ingredient>
+        <ingredient>
+            <nom>thym</nom>
+            <description>4 petites branches de thym</description>
+        </ingredient>
+        <nb-personnes> 4 personnes </nb-personnes>
+        <temps-preparation>20 min </temps-preparation>
+        <difficulte>tres facile</difficulte>
+        <description>
+            1. Lavez, pelez puis coupez les poires en tranches fines. Citronnez-les pour limiter l’oxydation.
+            2. Sur votre plan de travail, étalez la pâte feuilletée puis réalisez des disques de 10 cm de diamètre environ avec un bol ou un emporte-pièce.
+            Placez les disques de pâte sur feuille de papier cuisson et sur plaque.
+            3. Piquez la pâte pour éviter le gonflement lors de la cuisson. Disposez une cuillère à soupe de poudre d’amandes ou noisettes sur la surface des pâtes, puis les lamelles de fruit en les superposant légèrement. Déposez ensuite une cuillère à café de miel et une branche de thym.
+            4. Enfournez les tartelettes dans un four préchauffé à 200°C pour une vingtaine de minutes. Servez les tartes fines accompagnées d’une boule de glace vanille ou une cuillère de crème fraîche.
+        </description>
+        <temps-cuisson>30 min </temps-cuisson>
+
+    </recette>
+    <recette id="r8">
+        <titre>Verrines aux fruits de la passion, pannacotta vanillée</titre>
+        <resume>
+            Une bien jolie verrine aux saveurs exotiques pour nous réchauffer en hiver. On peut faire cette verrine avec de la purée de fruits de la passion, mais il faudra penser à la sucrer.
+
+        </resume>
+        <date-publication>29 octobre 2015</date-publication>
+        <ingredient>
+            <nom>Fruits de la passion</nom>
+            <apport-nutritif> Source de vitamines, minéraux et oligo-éléments</apport-nutritif>
+            <apport-energetique>100 kcal/100g</apport-energetique>
+            <saison>On le trouve sur nos étals toute l’année</saison>
+            <description>120 g de chou kale </description>
+        </ingredient>
+        <ingredient>
+            <nom>mascarpone</nom>
+            <description>250 g de mascarpone </description>
+        </ingredient>
+        <ingredient>
+            <nom> sucre blond </nom>
+            <description>30-50 g de sucre blond</description>
+        </ingredient>
+        <ingredient>
+            <nom>crème anglaise</nom>
+            <description> 50 cl de crème anglaise (maison ou du commerce)</description>
+        </ingredient>
+        <ingredient>
+            <nom>agar agar</nom>
+            <description>4 g d'agar agar</description>
+        </ingredient>
+        <nb-personnes>  8 À 12 PERSONNES </nb-personnes>
+        <temps-preparation>30 min </temps-preparation>
+        <temps-cuisson>15 min</temps-cuisson>
+        <difficulte>facile</difficulte>
+        <description>
+            1. Lavez, pelez puis coupez les poires en tranches fines. Citronnez-les pour limiter l’oxydation.
+            2. Sur votre plan de travail, étalez la pâte feuilletée puis réalisez des disques de 10 cm de diamètre environ avec un bol ou un emporte-pièce.
+            Placez les disques de pâte sur feuille de papier cuisson et sur plaque.
+            3. Piquez la pâte pour éviter le gonflement lors de la cuisson. Disposez une cuillère à soupe de poudre d’amandes ou noisettes sur la surface des pâtes, puis les lamelles de fruit en les superposant légèrement. Déposez ensuite une cuillère à café de miel et une branche de thym.
+            4. Enfournez les tartelettes dans un four préchauffé à 200°C pour une vingtaine de minutes. Servez les tartes fines accompagnées d’une boule de glace vanille ou une cuillère de crème fraîche.
+        </description>
+        <temps-cuisson>30 min </temps-cuisson>
+
+    </recette>
+    <ingredient id="fi1">
+        <nom>Figue</nom>
+        <apport-nutritif>fibres, potassium, calcium, vitamines du groupe B</apport-nutritif>
+        <apport-energetique>fibres, potassium, calcium, vitamines du groupe B</apport-energetique>
+        <saison>fin juin à novembre</saison>
+        <description>4 belles figues violettes bien mûres.</description>
+    </ingredient>
+    <ingredient>
+        <nom>Fécule de maïs</nom>
+        <apport-nutritif> Il contient beaucoup de fibres et il est une source intéressante de vitamines, surtout la vitamine B. Mais il est aussi excellent pour sa richesse en magnésium, en oligo-éléments (fer et zinc), en acides gras essentiels</apport-nutritif>
+        <apport-energetique>96kcal/100g</apport-energetique>
+        <saison>Récolté entre juillet et octobre</saison>
+        <description>1 cuillerée à café rase de fécule de maïs </description>
+    </ingredient>
+    <ingredient>
+        <nom>Lait</nom>
+        <description>1 tasse (environ 30 cl) de lait entier de préférence</description>
+    </ingredient>
+    <ingredient>
+        <nom>Sucre</nom>
+    </ingredient>
+    <ingredient>
+        <nom>Cacao</nom>
+        <description>1 cuillerée à soupe de cacao en poudre non sucré</description>
+    </ingredient>
+    <ingredient>
+        <nom>Chantilly</nom>
+    </ingredient>
+    <ingredient>
+        <nom>Minis guimauves</nom>
+    </ingredient>
+    <auteur>
+        <nom> Leroux </nom>
+        <biographie>
+            Auteur et photographe culinaire professionnelle depuis 16 ans,
+            Marie-Laure Tombini a créé en 2002 le site Ôdélices pour partager
+            ses recettes et idées avec vous. Rédactrice en chef
+            des magazines Odelices et Esprit Veggie, elle propose des recettes gourmandes et savoureuses,
+            avec une tendance healthy.
+        </biographie>
+        <pays>france</pays>
+        <ref-recette ref = "r5"/>
+    </auteur>
+    <auteur>
+        <nom> Interfel </nom>
+        <pays>france</pays>
+        <ref-recette ref = "r7"/>
+    </auteur>
+    <auteur>
+        <nom> Vanessa </nom>
+        <pays>france</pays>
+        <sexe>femme</sexe>
+        <biographie>Des recettes saines, tendances bio, découvrez les merveilles de Vanessa.</biographie>
+        <ref-recette ref = "r8"/>
+    </auteur>
+    <auteur>
+        <nom>Marie-Laure Tombini </nom>
+        <age>39</age>
+        <sexe>femme</sexe>
+        <biographie>
+            Auteur et photographe culinaire professionnelle depuis 16 ans,
+            Marie-Laure Tombini a créé en 2002 le site Ôdélices pour partager
+            ses recettes et idées avec vous. Rédactrice en chef
+            des magazines Odelices et Esprit Veggie, elle propose des recettes gourmandes et savoureuses,
+            avec une tendance healthy.
+        </biographie>
+        <pays>france</pays>
+        <ref-recette ref = "r6"/>
+    </auteur>
+</Recettes>

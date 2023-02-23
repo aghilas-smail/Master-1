@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!ELEMENT Recettes (recette | categorie | sous-categorie | produit | ingredient | auteur)* >
+        <!ENTITY % texte "(#PCDATA | p | strong | br | t )*" >
+        <!ELEMENT p ( #PCDATA | t | br | strong)* >
+        <!ELEMENT strong (#PCDATA) >
+        <!ELEMENT br EMPTY >
+        <!ELEMENT t (#PCDATA) >
+
+
+        <!ENTITY % cate "nom, nom-court?, description" >
+        <!ELEMENT recette (titre | resume | photo | date-publication | difficulte | ref-ingredient | nb-personnes | temps-preparation | temps-cuisson | temps-repos | description | note)* >
+        <!ATTLIST
+                recette id ID #IMPLIED
+                sous-categorie IDREF #IMPLIED>
+        <!ELEMENT titre (#PCDATA) >
+        <!ELEMENT resume %texte; >
+        <!ELEMENT date-publication (#PCDATA) >
+        <!ELEMENT difficulte (#PCDATA) >
+        <!ELEMENT nb-personnes (#PCDATA) >
+        <!ELEMENT temps-preparation (#PCDATA) >
+        <!ELEMENT temps-cuisson (#PCDATA) >
+        <!ELEMENT temps-repos (#PCDATA) >
+        <!ELEMENT note (#PCDATA) >
+
+        <!NOTATION jpeg SYSTEM "image/jpeg">
+        <!ELEMENT photo EMPTY>
+        <!ATTLIST photo href CDATA #IMPLIED>
+
+        <!ELEMENT ref-recette EMPTY >
+        <!ATTLIST ref-recette ref IDREF #REQUIRED >
+
+        <!ELEMENT ingredient (nom  | apport-nutritif | apport-energetique | saison | description | ref-recette)* >
+        <!ATTLIST ingredient
+                id ID #REQUIRED
+                refprod IDREF #IMPLIED>
+        <!ELEMENT apport-nutritif (#PCDATA)>
+        <!ELEMENT apport-energetique (#PCDATA)>
+        <!ELEMENT saison (#PCDATA)>
+        <!ELEMENT description %texte; >
+
+        <!ELEMENT ref-ingredient EMPTY >
+        <!ATTLIST ref-ingredient
+                ref IDREF #REQUIRED
+                quantite CDATA #IMPLIED >
+
+        <!ELEMENT produit (nom, nom-court?, ref-ingredient*) >
+        <!ATTLIST produit id ID #REQUIRED>
+        <!ELEMENT nom (#PCDATA) >
+        <!ELEMENT nom-court (#PCDATA) >
+        <!ELEMENT categorie (%cate;, ref-sous-categorie*) >
+        <!ATTLIST categorie id ID #REQUIRED >
+
+        <!ELEMENT ref-categorie EMPTY >
+        <!ATTLIST ref-categorie ref IDREF #REQUIRED >
+
+        <!ELEMENT sous-categorie (%cate;?) >
+        <!ATTLIST
+                sous-categorie id ID #REQUIRED
+                categorie IDREF #IMPLIED >
+
+        <!ELEMENT ref-sous-categorie EMPTY >
+        <!ATTLIST ref-sous-categorie ref IDREF #REQUIRED >
+        <!ELEMENT auteur (nom | age | pays | sexe | biographie | ref-recette)* >
+        <!ATTLIST auteur id ID #IMPLIED >
+        <!ELEMENT age (#PCDATA) >
+        <!ELEMENT pays (#PCDATA) >
+        <!ELEMENT sexe (#PCDATA) >
+        <!ELEMENT biographie %texte; >
+
