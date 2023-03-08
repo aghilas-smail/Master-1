@@ -69,3 +69,77 @@ Ainsi, la probabilité que la conception de l'enfant ait eu lieu plus de 290 jou
 P(X < 290 ou X > 240) = P(X < 290) + P(X > 240) = 0,9772 + 0,9987 = 1,9759
 
 Cependant, la probabilité doit être comprise entre 0 et 1. Nous pouvons donc conclure que la probabilité que la conception de l'enfant ait eu lieu plus de 290 jours avant sa naissance ou moins de 240 jours avant est d'environ 0,976 (arrondi à trois décimales).
+
+
+EXO 4 :
+
+On sait que la variable aléatoire qui représente la durée d'une conversation téléphonique suit une distribution exponentielle avec un paramètre λ = 1/10.
+
+(i) La probabilité d'attendre plus de 10 minutes est égale à la probabilité qu'une conversation téléphonique dure plus de 10 minutes. Mathématiquement, cela peut être exprimé comme suit :
+
+P(X > 10) = 1 - P(X ≤ 10)
+
+La probabilité que X soit inférieur ou égal à 10 minutes est donnée par la fonction de distribution cumulative (FDC) de la distribution exponentielle :
+
+F(X) = 1 - e^(-λX)
+
+Donc :
+
+P(X ≤ 10) = F(10) = 1 - e^(-1/10 * 10) = 1 - e^(-1) = 0,6321
+
+En utilisant la première formule, on obtient :
+
+P(X > 10) = 1 - P(X ≤ 10) = 1 - 0,6321 = 0,3679
+
+Ainsi, la probabilité d'attendre plus de 10 minutes est de 0,3679, soit environ 36,79%.
+
+(ii) La probabilité d'attendre entre 10 et 20 minutes est égale à la probabilité qu'une conversation téléphonique dure entre 10 et 20 minutes. Mathématiquement, cela peut être exprimé comme suit :
+
+P(10 < X < 20) = P(X < 20) - P(X ≤ 10)
+
+Encore une fois, en utilisant la FDC de la distribution exponentielle, on obtient :
+
+P(X < 20) = F(20) = 1 - e^(-1/10 * 20) = 1 - e^(-2) = 0,8647
+
+P(X ≤ 10) = F(10) = 1 - e^(-1/10 * 10) = 1 - e^(-1) = 0,6321
+
+Donc :
+
+P(10 < X < 20) = 0,8647 - 0,6321 = 0,2326
+
+Ainsi, la probabilité d'attendre entre 10 et 20 minutes est de 0,2326, soit environ 23,26%.
+
+
+Exo 5 :
+
+1-
+
+On sait que l'espérance de la variable aléatoire X qui représente le nombre de pièces produites en une semaine est de 50.
+
+On peut utiliser l'inégalité de Markov pour estimer la probabilité que la production de la semaine prochaine dépasse 75 pièces :
+P(X > 75) ≤ E(X) / 75
+P(X > 75) ≤ 50 / 75
+P(X > 75) ≤ 2/3
+
+Ainsi, la probabilité que la production de la semaine prochaine dépasse 75 pièces est inférieure ou égale à 2/3.
+
+2-
+
+On sait que l'espérance de la variable aléatoire X qui représente le nombre de pièces produites en une semaine est de 50 et que sa variance est de 25. On peut utiliser l'inégalité de Bienaymé-Chebychev pour estimer la probabilité que la production de la semaine à venir soit comprise entre 40 et 60 pièces :
+
+P(|X - 50| < 10) ≥ 1 - Var(X) / 10^2
+P(40 < X < 60) ≥ 1 - 25 / 10^2
+P(40 < X < 60) ≥ 0,75
+
+Ainsi, la probabilité que la production de la semaine à venir soit comprise entre 40 et 60 pièces est supérieure ou égale à 0,75. Notez que cette estimation est conservatrice, car l'inégalité de Bienaymé-Chebychev donne une borne inférieure pour la probabilité et peut être assez éloignée de la vraie probabilité si la distribution est asymétrique ou a une queue lourde. Si la distribution de X est connue, on peut utiliser des méthodes plus précises pour estimer la probabilité de l'événement en question.
+
+3-
+
+L'inégalité de Bienaymé-Chebychev est une inégalité qui donne une borne supérieure à la probabilité qu'une variable aléatoire s'écarte de sa moyenne. Plus précisément, pour toute variable aléatoire X et pour tout réel k > 0, l'inégalité de Bienaymé-Chebychev énonce que :
+
+P(|X - E(X)| ≥ k) ≤ Var(X) / k^2
+
+où E(X) est l'espérance de X et Var(X) est sa variance. Cette inégalité est utile pour estimer la probabilité que X s'écarte d'une certaine distance de son espérance. Elle est souvent utilisée lorsque la distribution de X est inconnue ou difficile à décrire.
+
+L'inégalité de Bienaymé-Chebychev permet également de déduire des informations sur la variance d'une variable aléatoire en connaissant la probabilité que cette variable s'écarte d'un certain nombre de fois son écart-type.
+
