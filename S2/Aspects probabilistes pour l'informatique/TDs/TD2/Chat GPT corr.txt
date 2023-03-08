@@ -1,0 +1,71 @@
+Exo 1 :
+
+Pour résoudre ce problème, nous allons utiliser la distribution uniforme continue, qui est une distribution de probabilité utilisée pour modéliser des variables aléatoires qui peuvent prendre n'importe quelle valeur dans un intervalle donné avec une probabilité égale.
+
+Dans ce cas, nous avons une variable aléatoire X qui représente le temps d'attente de l'usager, exprimé en minutes. Cette variable suit une distribution uniforme continue sur l'intervalle [0, 30], car l'usager peut arriver à n'importe quelle minute entre 7h00 et 7h30.
+
+Nous cherchons la probabilité que l'usager doive attendre plus de 10 minutes, c'est-à-dire que X soit supérieur à 10. Cette probabilité est donnée par :
+
+P(X > 10) = (30 - 10) / 30 = 2/3
+
+En effet, l'usager a une probabilité de 2/3 de se présenter à un moment où un bus est déjà passé, ce qui signifie qu'il devra attendre plus de 10 minutes avant le prochain bus.
+
+
+Exo 2 : 
+On sait que la variable aléatoire X suit une loi normale avec µ=3 et σ^2=9. On peut donc utiliser les propriétés de la loi normale pour calculer les probabilités demandées.
+
+P{2 < X < 5}:
+Tout d'abord, on peut standardiser la variable aléatoire X en utilisant la formule Z = (X - µ) / σ. Dans ce cas, on a Z = (X - 3) / 3. Ainsi, la probabilité que 2 < X < 5 est égale à la probabilité que (2 - 3) / 3 < (X - 3) / 3 < (5 - 3) / 3, ou encore -1/3 < Z < 2/3.
+
+Ensuite, on peut utiliser une table de la loi normale standard ou une calculatrice pour trouver la probabilité que Z soit comprise entre -1/3 et 2/3. On trouve alors que P{-1/3 < Z < 2/3} est environ égal à 0,4108.
+
+Ainsi, P{2 < X < 5} est environ égal à 0,4108.
+
+P{X > 0}:
+De la même manière que précédemment, on peut standardiser la variable aléatoire X pour obtenir Z = (X - 3) / 3. Ainsi, la probabilité que X > 0 est égale à la probabilité que Z > (0 - 3) / 3, ou encore Z > -1.
+
+En utilisant une table de la loi normale standard ou une calculatrice, on trouve que la probabilité que Z soit supérieur à -1 est d'environ 0,8413.
+
+Ainsi, P{X > 0} est environ égal à 0,8413.
+
+P{|X - 3| > 6}:
+On peut réécrire l'expression {|X - 3| > 6} comme l'union de deux événements mutuellement exclusifs: {X - 3 > 6} et {X - 3 < -6}. En utilisant la standardisation, on obtient:
+
+P{|X - 3| > 6} = P{X - 3 > 6} + P{X - 3 < -6}
+= P{(X - 3) / 3 > 2} + P{(X - 3) / 3 < -2}
+= P{Z > 2} + P{Z < -2}
+
+En utilisant une table de la loi normale standard ou une calculatrice, on trouve que la probabilité que Z soit supérieur à 2 est d'environ 0,0228, et que la probabilité que Z soit inférieur à -2 est également d'environ 0,0228.
+
+Ainsi, P{|X - 3| > 6} est environ égal à 0,0456.
+
+
+EXO 3 :
+
+
+On sait que la durée de grossesse suit une distribution normale avec une moyenne µ = 270 jours et une variance σ^2 = 100 jours^2. Pour calculer la probabilité que la conception de l'enfant ait eu lieu plus de 290 jours avant sa naissance ou moins de 240 jours avant, nous devons d'abord standardiser les valeurs de 290 et 240 jours.
+
+La variable standardisée Z est donnée par :
+
+Z = (X - µ) / σ
+
+où X est la durée de grossesse en jours, µ est la moyenne et σ est l'écart-type.
+
+Ainsi, la probabilité que la conception de l'enfant ait eu lieu plus de 290 jours avant sa naissance peut être calculée comme suit :
+
+P(X < 290) = P(Z < (290 - 270) / 10) = P(Z < 2)
+
+De même, la probabilité que la conception de l'enfant ait eu lieu moins de 240 jours avant sa naissance peut être calculée comme suit :
+
+P(X > 240) = P(Z > (240 - 270) / 10) = P(Z > -3)
+
+En utilisant une table de la distribution normale standard, nous pouvons trouver les probabilités correspondantes :
+
+P(Z < 2) ≈ 0,9772
+P(Z > -3) ≈ 0,9987
+
+Ainsi, la probabilité que la conception de l'enfant ait eu lieu plus de 290 jours avant sa naissance ou moins de 240 jours avant est la somme de ces deux probabilités :
+
+P(X < 290 ou X > 240) = P(X < 290) + P(X > 240) = 0,9772 + 0,9987 = 1,9759
+
+Cependant, la probabilité doit être comprise entre 0 et 1. Nous pouvons donc conclure que la probabilité que la conception de l'enfant ait eu lieu plus de 290 jours avant sa naissance ou moins de 240 jours avant est d'environ 0,976 (arrondi à trois décimales).
