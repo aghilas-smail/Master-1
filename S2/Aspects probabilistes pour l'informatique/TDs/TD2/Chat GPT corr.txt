@@ -143,3 +143,64 @@ où E(X) est l'espérance de X et Var(X) est sa variance. Cette inégalité est 
 
 L'inégalité de Bienaymé-Chebychev permet également de déduire des informations sur la variance d'une variable aléatoire en connaissant la probabilité que cette variable s'écarte d'un certain nombre de fois son écart-type.
 
+exo 6:
+
+On suppose que la variable aléatoire X représente la note obtenue à l'examen par un étudiant, et on sait que plus de la moitié des copies ont une note supérieure ou égale à 10. Cela signifie que :
+
+P(X ≥ 10) > 0,5
+
+On peut utiliser l'inégalité de Markov pour déduire des informations sur l'espérance de X :
+
+E(X) = ∫ x f(x) dx, où f(x) est la densité de probabilité de X.
+
+Puisque la note 10 est la plus petite note possible, on peut écrire :
+
+E(X) = ∫ x f(x) dx ≥ 10 * P(X ≥ 10)
+
+En utilisant l'information donnée, on a :
+
+E(X) ≥ 10 * 0,5 = 5
+
+Cela signifie que la moyenne des notes est supérieure ou égale à 5. Cependant, cette estimation est très conservatrice, car elle ne prend pas en compte les notes des copies qui ont obtenu une note inférieure à 10. En réalité, la moyenne des notes peut être beaucoup plus élevée que 5.
+
+
+EXO 7 :
+
+On suppose que la variable aléatoire X suit une loi binomiale avec des paramètres n et p, où p est la probabilité de réussite (obtenir un 6) et vaut 1/6. Ainsi, l'espérance de X est donnée par E(X) = np = n/6.
+
+Pour que la probabilité d'obtenir un nombre de 6 compris entre 0 et n/3 soit supérieure à 0,5, on peut utiliser l'inégalité de Bienaymé-Chebychev :
+
+P(|X - E(X)| < n/6) ≥ 1 - Var(X) / (n/6)^2
+
+On cherche à trouver une valeur de n telle que cette probabilité soit supérieure à 0,5. On sait que la variance de X est donnée par Var(X) = np(1-p) = n/6 * 5/6.
+
+En remplaçant les valeurs dans l'inégalité, on obtient :
+
+P(|X - n/6| < n/6) ≥ 1 - (n/6 * 5/6) / (n/36)
+
+Simplifiant :
+
+P(|X - n/6| < n/6) ≥ 1 - 5/6n
+
+Pour que cette probabilité soit supérieure à 0,5, on a :
+
+1 - 5/6n ≥ 0,5
+
+ce qui donne :
+
+n ≥ 6
+
+Ainsi, si l'on lance le dé au moins 6 fois, la probabilité d'obtenir un nombre de 6 compris entre 0 et n/3 est supérieure à 0,5.
+
+Pour que la probabilité soit supérieure à 0,9, on a :
+
+1 - 5/6n ≥ 0,9
+
+ce qui donne :
+
+n ≥ 30
+
+Ainsi, si l'on lance le dé au moins 30 fois, la probabilité d'obtenir un nombre de 6 compris entre 0 et n/3 est supérieure à 0,9.
+
+
+
