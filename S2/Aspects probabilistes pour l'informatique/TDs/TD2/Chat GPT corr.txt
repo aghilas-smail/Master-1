@@ -202,5 +202,26 @@ n ≥ 30
 
 Ainsi, si l'on lance le dé au moins 30 fois, la probabilité d'obtenir un nombre de 6 compris entre 0 et n/3 est supérieure à 0,9.
 
+EXO 10 :
 
+On peut approximer la distribution du temps total T pour corriger les 50 copies en utilisant le théorème central limite. Ainsi, T suit approximativement une loi normale de moyenne µ = 50 * 20 = 1000 minutes et d'écart-type σ = sqrt(50) * 4 = 20*sqrt(2) minutes.
 
+On cherche la probabilité que l'enseignant corrige au moins 25 copies durant les 450 premières minutes. On peut approcher cette probabilité en utilisant la distribution normale de T :
+
+P(T <= 450 + 25*20) = P(T <= 950)
+
+où 450 minutes représentent le temps écoulé pour corriger les premières 25 copies, et 25*20 minutes représentent le temps attendu pour corriger les 25 copies suivantes.
+
+On peut standardiser cette expression en utilisant la formule :
+
+Z = (X - µ) / σ
+
+où X est la variable aléatoire suivant la distribution normale de T. Ainsi,
+
+P(T <= 950) = P((T - µ) / σ <= (950 - µ) / σ) = P(Z <= (950 - 1000) / (20*sqrt(2)))
+
+= P(Z <= -2.12)
+
+On peut utiliser une table de la distribution normale standard pour trouver que la probabilité correspondante est environ 0.0179.
+
+Ainsi, la probabilité que l'enseignant corrige au moins 25 copies durant les 450 premières minutes est d'environ 0.0179.
