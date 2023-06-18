@@ -31,8 +31,8 @@ public class PiSurQuatre extends Thread {
             y = aléa.nextDouble() ;
             if (x * x + y * y <= 1) tiragesDansLeDisque++ ;
         }
+        }
     }
-}
 
 
 /* 
