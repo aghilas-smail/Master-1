@@ -1,0 +1,16 @@
+node.start{
+    fill-color: green;
+}
+
+node.destination{
+    fill-color: #0d48bf;
+}
+
+node.colored{
+    fill-color: #09f5cb;
+}
+
+edge.colored{
+    fill-color: #00ff99;
+    size: 5px;
+}
