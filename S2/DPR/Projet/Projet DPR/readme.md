@@ -1,4 +1,4 @@
-# Projet DPR S1 M1 Informatique 2023
+# Projet DPR S2 M1 Informatique 2023
 ** Projet réalisé par SMAIL AGHILAS (DRP1).
 
 * Le fichier transform.xsl permet de transformer un fichier XML (donnees-recettes.xml) en un fichier XML (RecepiesTransforme.xml) selon un fichier DTD (Recepies.dtd).
